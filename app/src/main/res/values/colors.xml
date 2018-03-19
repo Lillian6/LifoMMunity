@@ -8,4 +8,6 @@
     <color name="postText">#FFFFFF</color>
     <color name="btnBg">#a9ffffff</color>
     <color name="btnSelect">#52000000</color>
+    <color name="profileBg">#5e000000</color>
+    <color name="profileText">#FFFFFF</color>
 </resources>

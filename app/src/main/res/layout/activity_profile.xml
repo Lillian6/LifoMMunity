@@ -7,10 +7,83 @@
     android:orientation="vertical"
     android:background="@drawable/profile_bg"
     tools:context="com.markzhengma.android.lifommunity.ProfileActivity">
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"/>
+        android:layout_weight="7">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/profileBg"
+                android:padding="16dp">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:background="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="My Name"
+                    android:textColor="@color/profileText"
+                    android:layout_margin="4dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="My Gender"
+                    android:textColor="@color/profileText"
+                    android:layout_margin="4dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="New York, NY"
+                    android:textColor="@color/profileText"
+                    android:layout_margin="4dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="A typical user with a healthy lifestyle and trying to make a positive influence to others in the community."
+                    android:textColor="@color/profileText"
+                    android:layout_margin="4dp"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Posts"
+                android:textColor="@color/postText"
+                android:drawableStart="@drawable/cam_drawable"
+                android:paddingHorizontal="32dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/profileBg"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Favorites"
+                android:drawableStart="@drawable/fav_drawable"
+                android:paddingHorizontal="32dp"
+                android:textColor="@color/postText"
+                android:layout_marginTop="16dp"
+                android:background="@color/profileBg"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:drawableStart="@drawable/set_drawable"
+                android:paddingHorizontal="32dp"
+                android:textColor="@color/postText"
+                android:layout_marginTop="16dp"
+                android:background="@color/profileBg"/>
+        </LinearLayout>
+    </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
