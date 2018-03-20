@@ -22,7 +22,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         setHomeBtnListener();
         setPostBtnListener();
-        setProfileBtnListener();
     }
 
     public void setHomeBtnListener() {
@@ -53,17 +52,4 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setProfileBtnListener(){
-        profileBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadProfileActivity();
-            }
-        });
-    }
-
-    private void loadProfileActivity(){
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
-    }
 }
