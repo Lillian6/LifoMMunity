@@ -10,7 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_weight="7"
         android:background="@color/postBg"
         android:layout_margin="16dp"
         android:padding="8dp">
@@ -18,16 +18,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title:"
+                android:textColor="@color/postText"
+                android:textSize="16dp"
+                android:textStyle="bold"/>
             <EditText
                 android:id="@+id/post_title_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Title"/>
+                android:hint="A topic to attract others' eyeballs!"
+                android:textColorHint="@color/postText"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Post:"
+                android:textColor="@color/postText"
+                android:textSize="16dp"
+                android:textStyle="bold"/>
             <EditText
                 android:id="@+id/post_content_edit_text"
+                android:inputType="textMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Content"/>
+                android:hint="Share your story here!"
+                android:textColorHint="@color/postText"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add an image"/>
             <Button
                 android:id="@+id/submit_post_btn"
                 android:layout_width="wrap_content"
