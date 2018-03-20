@@ -4,8 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32dp"
     tools:context="com.markzhengma.android.lifommunity.LoginActivity">
 
+    <EditText
+        android:id="@+id/username_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/album_description_username"
+        android:inputType="textCapWords"
+        android:padding="16dp"/>
+
+    <EditText
+        android:id="@+id/password_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/album_description_password"
+        android:inputType="textCapWords"
+        android:padding="16dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/log_in"
+        android:background="@color/colorGreen"
+        android:textColor="@color/colorYellow"
+        android:padding="16dp"
+        android:textAllCaps="true" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@color/btnBg"
+            android:textColor="@color/colorGreen"
+            android:text="@string/forget_password" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@color/btnBg"
+            android:textColor="@color/colorGreen"
+            android:text="@string/sign_up" />
+    </RelativeLayout>
 
 
 </LinearLayout>
