@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/profile_bg"
+    android:background="@color/mainBg"
     tools:context="com.markzhengma.android.lifommunity.ProfileActivity">
     <ScrollView
         android:layout_width="match_parent"
@@ -19,40 +19,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/profileBg"
                 android:padding="16dp">
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_gravity="center"
-                    android:background="@color/colorPrimaryDark"/>
+                    android:background="@color/profileBg"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="My Name"
-                    android:textColor="@color/profileText"
+                    android:textColor="@color/postTextGreen"
                     android:layout_margin="4dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="My Gender"
-                    android:textColor="@color/profileText"
+                    android:textColor="@color/postTextGreen"
                     android:layout_margin="4dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="New York, NY"
-                    android:textColor="@color/profileText"
+                    android:textColor="@color/postTextGreen"
                     android:layout_margin="4dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="A typical user with a healthy lifestyle and trying to make a positive influence to others in the community."
-                    android:textColor="@color/profileText"
+                    android:textColor="@color/postTextGreen"
                     android:layout_margin="4dp"/>
             </LinearLayout>
             <Button

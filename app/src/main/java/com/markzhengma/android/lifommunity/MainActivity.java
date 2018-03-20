@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
             LinearLayout newContentLayout = new LinearLayout(this);
             newContentLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 4));
-            newContentLayout.setBackgroundColor(Color.argb(94,0,0,0));
+            newContentLayout.setBackgroundColor(getResources().getColor(R.color.postBg));
             newContentLayout.setOrientation(LinearLayout.VERTICAL);
             newPostLayout.addView(newContentLayout);
 
