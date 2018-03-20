@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#79bdad</color>
+    <color name="colorPrimaryDark">#79bdad</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="mainBg">#71cdff</color>
-    <color name="postBg">#5e000000</color>
     <color name="postText">#FFFFFF</color>
     <color name="btnBg">#a9ffffff</color>
-    <color name="btnSelect">#52000000</color>
-    <color name="profileBg">#5e000000</color>
-    <color name="profileText">#FFFFFF</color>
+    <color name="colorGreen">#79bdad</color>
+    <color name="colorYellow">#F9F7E8</color>
 </resources>
