@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/main_bg_2"
+    android:background="@color/colorYellow"
     tools:context="com.markzhengma.android.lifommunity.PostActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
-        android:background="@color/postBg"
         android:layout_margin="16dp"
         android:padding="8dp">
         <LinearLayout
@@ -22,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Title:"
-                android:textColor="@color/postText"
+                android:textColor="@color/colorGreen"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <EditText
@@ -30,12 +29,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="A topic to attract others' eyeballs!"
-                android:textColorHint="@color/postText"/>
+                android:textColorHint="@color/colorGreen"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Post:"
-                android:textColor="@color/postText"
+                android:textColor="@color/colorGreen"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <EditText
@@ -44,15 +43,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Share your story here!"
-                android:textColorHint="@color/postText"/>
+                android:textColorHint="@color/colorGreen"/>
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/postText"
+                android:drawableStart="@drawable/photo_drawable"
+                android:paddingHorizontal="32dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorGreen"
                 android:text="Add an image"/>
             <Button
                 android:id="@+id/submit_post_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:background="@color/colorGreen"
+                android:textColor="@color/postText"
+                android:layout_marginVertical="8dp"
+                android:layout_gravity="center_horizontal"
                 android:text="post"/>
         </LinearLayout>
     </ScrollView>
@@ -75,7 +84,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/btnSelect"
+            android:background="@color/colorGreen"
             android:text="Post"
             android:textColor="@color/postText" />
 

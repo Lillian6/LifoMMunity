@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/main_bg"
+    android:background="@color/colorYellow"
     tools:context="com.markzhengma.android.lifommunity.MainActivity">
 
     <LinearLayout
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:layout_margin="8dp"
-            android:background="@color/postBg">
+            android:background="@color/colorGreen">
 
         </SearchView>
     </LinearLayout>
@@ -273,8 +273,8 @@
             android:id="@+id/home_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/btnSelect"
-            android:textColor="@color/postText"
+            android:background="@color/colorGreen"
+            android:textColor="@color/colorYellow"
             android:layout_weight="1"
             android:text="Home"/>
         <Button
