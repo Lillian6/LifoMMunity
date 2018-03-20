@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button profileBtn;
     LinearLayout postlistLayout;
 
+
     int postIndex;
 
     @Override
