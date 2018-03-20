@@ -3,12 +3,8 @@
     <color name="colorPrimary">#79bdad</color>
     <color name="colorPrimaryDark">#79bdad</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="mainBg">#F9F7E8</color>
-    <color name="postBg">#79bdad</color>
-    <color name="postTextGreen">#79bdad</color>
     <color name="postText">#FFFFFF</color>
     <color name="btnBg">#a9ffffff</color>
-    <color name="btnSelect">#79bdad</color>
-    <color name="profileBg">#79bdad</color>
-    <color name="profileText">#FFFFFF</color>
+    <color name="colorGreen">#79bdad</color>
+    <color name="colorYellow">#F9F7E8</color>
 </resources>

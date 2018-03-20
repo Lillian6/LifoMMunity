@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/mainBg"
+    android:background="@color/colorYellow"
     tools:context="com.markzhengma.android.lifommunity.ProfileActivity">
     <ScrollView
         android:layout_width="match_parent"
@@ -24,34 +24,34 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_gravity="center"
-                    android:background="@color/profileBg"/>
+                    android:background="@color/colorGreen"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="My Name"
-                    android:textColor="@color/postTextGreen"
+                    android:textColor="@color/colorGreen"
                     android:layout_margin="4dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="My Gender"
-                    android:textColor="@color/postTextGreen"
+                    android:textColor="@color/colorGreen"
                     android:layout_margin="4dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="New York, NY"
-                    android:textColor="@color/postTextGreen"
+                    android:textColor="@color/colorGreen"
                     android:layout_margin="4dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="A typical user with a healthy lifestyle and trying to make a positive influence to others in the community."
-                    android:textColor="@color/postTextGreen"
+                    android:textColor="@color/colorGreen"
                     android:layout_margin="4dp"/>
             </LinearLayout>
             <Button
@@ -62,7 +62,7 @@
                 android:drawableStart="@drawable/cam_drawable"
                 android:paddingHorizontal="32dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/profileBg"/>
+                android:background="@color/colorGreen"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                 android:paddingHorizontal="32dp"
                 android:textColor="@color/postText"
                 android:layout_marginTop="16dp"
-                android:background="@color/profileBg"/>
+                android:background="@color/colorGreen"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                 android:paddingHorizontal="32dp"
                 android:textColor="@color/postText"
                 android:layout_marginTop="16dp"
-                android:background="@color/profileBg"/>
+                android:background="@color/colorGreen"/>
         </LinearLayout>
     </ScrollView>
     <LinearLayout
@@ -105,7 +105,7 @@
             android:id="@+id/profile_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/btnSelect"
+            android:background="@color/colorGreen"
             android:textColor="@color/postText"
             android:layout_weight="1"
             android:text="Profile"/>
