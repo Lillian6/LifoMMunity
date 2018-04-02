@@ -10,6 +10,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button homeBtn;
     Button postBtn;
     Button profileBtn;
+    Button loginActBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +20,11 @@ public class ProfileActivity extends AppCompatActivity {
         homeBtn = findViewById(R.id.home_btn);
         postBtn = findViewById(R.id.post_btn);
         profileBtn = findViewById(R.id.profile_btn);
+        loginActBtn = findViewById(R.id.login_act_btn);
 
         setHomeBtnListener();
         setPostBtnListener();
+        setLoginActBtnListener();
     }
 
     public void setHomeBtnListener() {
@@ -49,6 +52,20 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void loadPostActivity(){
         Intent intent = new Intent(this, PostActivity.class);
+        startActivity(intent);
+    }
+
+    public void setLoginActBtnListener(){
+        loginActBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadLoginActivity();
+            }
+        });
+    }
+
+    private void loadLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
