@@ -21,10 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/album_description_password"
-        android:inputType="textCapWords"
+        android:inputType="textPassword"
         android:padding="16dp"/>
 
     <Button
+        android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/log_in"
@@ -46,6 +47,7 @@
             android:text="@string/forget_password" />
 
         <Button
+            android:id="@+id/signup_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

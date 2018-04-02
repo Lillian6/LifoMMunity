@@ -5,12 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
     Button homeBtn;
     Button postBtn;
     Button profileBtn;
     Button loginActBtn;
+
+    String email;
+
+    TextView emailTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +26,17 @@ public class ProfileActivity extends AppCompatActivity {
         postBtn = findViewById(R.id.post_btn);
         profileBtn = findViewById(R.id.profile_btn);
         loginActBtn = findViewById(R.id.login_act_btn);
+        emailTextView = findViewById(R.id.email_profile);
 
         setHomeBtnListener();
         setPostBtnListener();
         setLoginActBtnListener();
+
+        Intent intent = getIntent();
+        email = intent.getStringExtra("EMAIL_EXTRA");
+        if (email != null) {
+            emailTextView.setText(email);
+        }
     }
 
     public void setHomeBtnListener() {
