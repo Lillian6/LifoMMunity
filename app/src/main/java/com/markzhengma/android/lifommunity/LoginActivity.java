@@ -20,6 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
+    Button homeBtn;
+    Button postBtn;
+
     EditText mEmailField;
     EditText mPasswordField;
 
@@ -37,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordField = findViewById(R.id.password_edit);
         signUpBtn = findViewById(R.id.signup_btn);
         loginBtn = findViewById(R.id.login_btn);
+        homeBtn = findViewById(R.id.home_btn);
+        postBtn = findViewById(R.id.post_btn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +56,9 @@ public class LoginActivity extends AppCompatActivity {
                 createUser();
             }
         });
+
+        setHomeBtnListener();
+        setPostBtnListener();
     }
 
     private void signInUser(){
@@ -95,6 +103,34 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void setHomeBtnListener() {
+        homeBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                loadMainActivity();
+            }
+        });
+    }
+
+    private void loadMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void setPostBtnListener() {
+        postBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                loadPostActivity();
+            }
+        });
+    }
+
+    private void loadPostActivity(){
+        Intent intent = new Intent(this, PostActivity.class);
+        startActivity(intent);
     }
 
 }

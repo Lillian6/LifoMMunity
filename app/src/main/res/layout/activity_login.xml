@@ -5,56 +5,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="32dp"
+    android:background="@color/colorYellow"
     tools:context="com.markzhengma.android.lifommunity.LoginActivity">
 
-    <EditText
-        android:id="@+id/username_edit"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/album_description_username"
-        android:inputType="textCapWords"
-        android:padding="16dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        android:padding="32dp">
 
-    <EditText
-        android:id="@+id/password_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/album_description_password"
-        android:inputType="textPassword"
-        android:padding="16dp"/>
-
-    <Button
-        android:id="@+id/login_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/log_in"
-        android:background="@color/colorGreen"
-        android:textColor="@color/colorYellow"
-        android:padding="16dp"
-        android:textAllCaps="true" />
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:background="@color/btnBg"
-            android:textColor="@color/colorGreen"
-            android:text="@string/forget_password" />
+            android:text="Please log in or sign up. \nYou could only browse other posts if you don't log in."/>
+
+        <EditText
+            android:id="@+id/username_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/album_description_username"
+            android:inputType="textCapWords"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/password_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/album_description_password"
+            android:inputType="textPassword"
+            android:padding="16dp"/>
 
         <Button
-            android:id="@+id/signup_btn"
-            android:layout_width="wrap_content"
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:text="@string/log_in"
+            android:background="@color/colorGreen"
+            android:textColor="@color/colorYellow"
+            android:padding="16dp"
+            android:textAllCaps="true" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="@color/btnBg"
+                android:textColor="@color/colorGreen"
+                android:text="@string/forget_password" />
+
+            <Button
+                android:id="@+id/signup_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@color/btnBg"
+                android:textColor="@color/colorGreen"
+                android:text="@string/sign_up" />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/home_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:background="@color/btnBg"
-            android:textColor="@color/colorGreen"
-            android:text="@string/sign_up" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:text="Home"/>
+        <Button
+            android:id="@+id/post_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/btnBg"
+            android:layout_weight="1"
+            android:text="Post"/>
+        <Button
+            android:id="@+id/profile_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorGreen"
+            android:textColor="@color/postText"
+            android:layout_weight="1"
+            android:text="Profile"/>
+    </LinearLayout>
 
 
 </LinearLayout>
