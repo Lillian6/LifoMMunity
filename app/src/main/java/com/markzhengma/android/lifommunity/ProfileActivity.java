@@ -3,19 +3,24 @@ package com.markzhengma.android.lifommunity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
     Button homeBtn;
     Button postBtn;
     Button profileBtn;
-    Button loginActBtn;
+    Button signoutBtn;
+    TextView emailTextView;
 
     String email;
 
-    TextView emailTextView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +30,24 @@ public class ProfileActivity extends AppCompatActivity {
         homeBtn = findViewById(R.id.home_btn);
         postBtn = findViewById(R.id.post_btn);
         profileBtn = findViewById(R.id.profile_btn);
-        loginActBtn = findViewById(R.id.login_act_btn);
+        signoutBtn = findViewById(R.id.signout_act_btn);
         emailTextView = findViewById(R.id.email_profile);
 
         setHomeBtnListener();
         setPostBtnListener();
-        setLoginActBtnListener();
+        setSignoutBtnListener();
+    }
 
-        Intent intent = getIntent();
-        email = intent.getStringExtra("EMAIL_EXTRA");
-        if (email != null) {
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser == null){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }else{
+            email = currentUser.getEmail();
             emailTextView.setText(email);
         }
     }
@@ -67,16 +80,17 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setLoginActBtnListener(){
-        loginActBtn.setOnClickListener(new View.OnClickListener() {
+    public void setSignoutBtnListener(){
+        signoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadLoginActivity();
+                signOutUser();
             }
         });
     }
 
-    private void loadLoginActivity(){
+    private void signOutUser(){
+        mAuth.signOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }

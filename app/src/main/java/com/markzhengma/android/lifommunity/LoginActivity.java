@@ -63,15 +63,10 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d(user.getEmail(), "signInWithEmail:success");
-
-                            intent.putExtra("EMAIL_EXTRA", user.getEmail());
+                            Toast.makeText(LoginActivity.this, "Welcome, " + user.getEmail(), Toast.LENGTH_SHORT).show();
                             startActivity(intent);
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("Damn...", "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -83,17 +78,18 @@ public class LoginActivity extends AppCompatActivity {
     private void createUser() {
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
+        final Intent intent = new Intent(this, ProfileActivity.class);
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d("successful", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Log.v(user.getEmail(),"logged-in!");
+                            Toast.makeText(LoginActivity.this, "New user: " + user.getEmail() + ", welcome!", Toast.LENGTH_SHORT).show();
+
+                            startActivity(intent);
                         } else {
-                            Log.w("failed", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 
                         }

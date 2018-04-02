@@ -90,11 +90,11 @@
                 android:layout_marginTop="16dp"
                 android:background="@color/colorGreen"/>
             <Button
-                android:id="@+id/login_act_btn"
+                android:id="@+id/signout_act_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
-                android:drawableStart="@drawable/set_drawable"
+                android:text="Log Out"
+                android:drawableStart="@drawable/out_drawable"
                 android:paddingHorizontal="32dp"
                 android:textColor="@color/postText"
                 android:layout_marginTop="16dp"
