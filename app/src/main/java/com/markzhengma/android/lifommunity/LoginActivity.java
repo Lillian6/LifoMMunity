@@ -5,10 +5,13 @@ import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,12 +25,17 @@ public class LoginActivity extends AppCompatActivity {
 
     Button homeBtn;
     Button postBtn;
-
     EditText mEmailField;
     EditText mPasswordField;
-
+    EditText mEmailSignUpField;
+    EditText mPasswordSignUpField;
     Button signUpBtn;
     Button loginBtn;
+    Button signUpChangeBtn;
+    Button loginChangeBtn;
+
+    LinearLayout loginLayout;
+    LinearLayout signUpLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,12 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.login_btn);
         homeBtn = findViewById(R.id.home_btn);
         postBtn = findViewById(R.id.post_btn);
+        loginLayout = findViewById(R.id.login_layout);
+        signUpLayout = findViewById(R.id.signup_layout);
+        signUpChangeBtn = findViewById(R.id.signup_change_btn);
+        loginChangeBtn = findViewById(R.id.login_change_btn);
+        mEmailSignUpField = findViewById(R.id.username_signup_edit);
+        mPasswordSignUpField = findViewById(R.id.password_signup_edit);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,16 +63,36 @@ public class LoginActivity extends AppCompatActivity {
                 signInUser();
             }
         });
-
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createUser();
             }
         });
-
-        setHomeBtnListener();
-        setPostBtnListener();
+        homeBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                loadMainActivity();
+            }
+        });
+        postBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                loadPostActivity();
+            }
+        });
+        signUpChangeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSignUp();
+            }
+        });
+        loginChangeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLogin();
+            }
+        });
     }
 
     private void signInUser(){
@@ -84,8 +118,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void createUser() {
-        String email = mEmailField.getText().toString();
-        String password = mPasswordField.getText().toString();
+        String email = mEmailSignUpField.getText().toString();
+        String password = mPasswordSignUpField.getText().toString();
         final Intent intent = new Intent(this, ProfileActivity.class);
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -105,32 +139,26 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    public void setHomeBtnListener() {
-        homeBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadMainActivity();
-            }
-        });
-    }
-
     private void loadMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-    public void setPostBtnListener() {
-        postBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadPostActivity();
-            }
-        });
-    }
-
     private void loadPostActivity(){
         Intent intent = new Intent(this, PostActivity.class);
         startActivity(intent);
+    }
+
+    private void showSignUp(){
+        LinearLayout.LayoutParams signUpParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 7.0f);
+        LinearLayout.LayoutParams loginParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f);
+        signUpLayout.setLayoutParams(signUpParam);
+        loginLayout.setLayoutParams(loginParam);
+    }
+    private void showLogin(){
+        LinearLayout.LayoutParams signUpParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f);
+        LinearLayout.LayoutParams loginParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 7.0f);
+        signUpLayout.setLayoutParams(signUpParam);
+        loginLayout.setLayoutParams(loginParam);
     }
 
 }
