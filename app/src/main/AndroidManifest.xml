@@ -19,7 +19,9 @@
         <activity android:name=".PostActivity"
                     android:label="Post"/>
         <activity android:name=".ProfileActivity"
-                    android:label="Profile"></activity>
+                    android:label="Profile"/>
+        <activity android:name=".LoginActivity"
+                    android:label="Login"></activity>
     </application>
 
 </manifest>
