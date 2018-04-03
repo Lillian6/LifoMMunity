@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="32dp"
     android:background="@color/colorYellow"
     tools:context="com.markzhengma.android.lifommunity.LoginActivity">
 
@@ -80,6 +81,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@color/colorYellow"
+            android:textColor="@color/colorGreen"
+            android:text="@string/forget_password" />
             android:text="You can create your account on this page. \nYou will use the email and password to log in."/>
 
         <EditText
