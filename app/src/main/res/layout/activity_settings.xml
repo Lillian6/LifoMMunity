@@ -24,21 +24,27 @@
         android:inputType="text"/>
 
     <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/gender_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
 
         <RadioButton
             android:id="@+id/female_radio_button"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/female"/>
         <RadioButton
+            android:layout_weight="1"
             android:id="@+id/male_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/male"/>
         <RadioButton
             android:id="@+id/other_radio_button"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/other"/>
@@ -56,8 +62,7 @@
         android:id="@+id/location_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:prompt="@string/location_prompt"
-        android:entries="@string-array/location_arrays"/>
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/intro_edit"

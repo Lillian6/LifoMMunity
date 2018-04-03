@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
     Button homeBtn;
     Button postBtn;
@@ -37,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
         setProfileBtnListener();
 
         postIndex = 0;
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("refer");
+
+        myRef.setValue("Hello, World!");
 
     }
 

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "228527757799",
+    "firebase_url": "https://lifommunity.firebaseio.com",
+    "project_id": "lifommunity",
+    "storage_bucket": "lifommunity.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228527757799:android:5d092fa1cf554f80",
+        "android_client_info": {
+          "package_name": "com.markzhengma.android.lifommunity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228527757799-3qp7udq56ihpu2khb1kv2tnib621n961.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.markzhengma.android.lifommunity",
+            "certificate_hash": "836951b9e1506ed93fd7c1b35f40605d1f5da7e9"
+          }
+        },
+        {
+          "client_id": "228527757799-apl34tu7q2qjr96umicpdlkcb6lts4n7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6HC3F2_1txsg-Lvlfok3zYaocuSGAqTA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228527757799-apl34tu7q2qjr96umicpdlkcb6lts4n7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
