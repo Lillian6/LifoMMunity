@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LifoMMunity.iml" filepath="$PROJECT_DIR$/.idea/LifoMMunity.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lifommunity.iml" filepath="$PROJECT_DIR$/Lifommunity.iml" />
-      <module fileurl="file://C:\Users\IBM\AndroidStudioProjects\LifoMMunity\Lifommunity.iml" filepath="C:\Users\IBM\AndroidStudioProjects\LifoMMunity\Lifommunity.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
