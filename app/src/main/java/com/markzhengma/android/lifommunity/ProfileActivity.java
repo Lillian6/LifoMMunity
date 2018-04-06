@@ -15,12 +15,16 @@ public class ProfileActivity extends AppCompatActivity {
     Button homeBtn;
     Button postBtn;
     Button profileBtn;
+
+    Button settingBtn;
+
     Button signOutBtn;
     TextView emailTextView;
 
     String email;
 
     private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,14 @@ public class ProfileActivity extends AppCompatActivity {
         homeBtn = findViewById(R.id.home_btn);
         postBtn = findViewById(R.id.post_btn);
         profileBtn = findViewById(R.id.profile_btn);
+
+        settingBtn = findViewById(R.id.settings_button);
+
+        setHomeBtnListener();
+        setPostBtnListener();
+        setSettingBtnListener();
+
+
         signOutBtn = findViewById(R.id.signout_act_btn);
         emailTextView = findViewById(R.id.email_profile);
 
@@ -50,7 +62,9 @@ public class ProfileActivity extends AppCompatActivity {
             email = currentUser.getEmail();
             emailTextView.setText(email);
         }
+
     }
+
 
     public void setHomeBtnListener() {
         homeBtn.setOnClickListener(new View.OnClickListener(){
@@ -80,13 +94,35 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void setSettingBtnListener() {
+        postBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                loadSettingsActivity();
+            }
+            });
+    }
+                                   
+
     public void setSignOutBtnListener(){
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signOutUser();
+
             }
         });
+    }
+
+
+    public void loadSettingsActivity(){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    public void startSettingsActivity(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     private void signOutUser(){
