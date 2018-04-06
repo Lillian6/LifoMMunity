@@ -16,14 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".PostActivity"
-            android:label="Post" />
-        <activity
-            android:name=".ProfileActivity"
-            android:label="Profile" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+
+        <activity android:name=".PostActivity"
+                    android:label="Post"/>
+        <activity android:name=".ProfileActivity"
+                    android:label="Profile"/>
+        <activity android:name=".LoginActivity"
+                    android:label="Login"></activity>
+
     </application>
 
 </manifest>

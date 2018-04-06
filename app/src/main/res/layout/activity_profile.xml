@@ -33,6 +33,14 @@
                     android:textColor="@color/colorGreen"
                     android:layout_margin="4dp"/>
                 <TextView
+                    android:id="@+id/email_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="My Email"
+                    android:textColor="@color/colorGreen"
+                    android:layout_margin="4dp"/>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -81,8 +89,24 @@
                 android:paddingHorizontal="32dp"
                 android:textColor="@color/postText"
                 android:layout_marginTop="16dp"
+
                 android:background="@color/colorGreen"
                 android:onClick="startSettingsActivity"/>
+            <Button
+                android:id="@+id/signout_act_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Log Out"
+                android:drawableStart="@drawable/out_drawable"
+                android:paddingHorizontal="32dp"
+                android:textColor="@color/postText"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorGreen"/>
+            <CalendarView
+                android:id="@+id/simpleCalendarView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
         </LinearLayout>
     </ScrollView>
     <LinearLayout
