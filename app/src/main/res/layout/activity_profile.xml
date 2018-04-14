@@ -90,8 +90,7 @@
                 android:textColor="@color/postText"
                 android:layout_marginTop="16dp"
 
-                android:background="@color/colorGreen"
-                android:onClick="startSettingsActivity"/>
+                android:background="@color/colorGreen" />
             <Button
                 android:id="@+id/signout_act_btn"
                 android:layout_width="match_parent"
