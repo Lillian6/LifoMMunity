@@ -15,9 +15,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button homeBtn;
     Button postBtn;
     Button profileBtn;
-
     Button settingBtn;
-
     Button signOutBtn;
     TextView emailTextView;
 
@@ -37,16 +35,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         settingBtn = findViewById(R.id.settings_button);
 
-        setHomeBtnListener();
-        setPostBtnListener();
-        setSettingBtnListener();
-
-
         signOutBtn = findViewById(R.id.signout_act_btn);
         emailTextView = findViewById(R.id.email_profile);
 
         setHomeBtnListener();
         setPostBtnListener();
+        setSettingBtnListener();
         setSignOutBtnListener();
     }
 
@@ -95,7 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void setSettingBtnListener() {
-        postBtn.setOnClickListener(new View.OnClickListener(){
+        settingBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 loadSettingsActivity();
@@ -116,11 +110,6 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     public void loadSettingsActivity(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
-
-    public void startSettingsActivity(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }

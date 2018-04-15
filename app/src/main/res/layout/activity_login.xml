@@ -53,6 +53,7 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/forget_password_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -118,6 +119,32 @@
             android:textAllCaps="true" />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/forget_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="If you forget the password, please enter your email address."/>
+
+        <EditText
+            android:id="@+id/username_forget_password_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/album_description_username"
+            android:inputType="textCapWords"
+            android:padding="16dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset Password"/>
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -144,6 +171,7 @@
             android:layout_weight="1"
             android:text="Profile"/>
     </LinearLayout>
+
 
 
 </LinearLayout>

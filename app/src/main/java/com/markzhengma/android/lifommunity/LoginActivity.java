@@ -25,23 +25,25 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
-    Button homeBtn;
-    Button postBtn;
-    EditText mEmailField;
-    EditText mPasswordField;
-    EditText mEmailSignUpField;
-    EditText mPasswordSignUpField;
-    Button signUpBtn;
-    Button loginBtn;
-    Button signUpChangeBtn;
-    Button loginChangeBtn;
+    private Button homeBtn;
+    private Button postBtn;
+    private EditText mEmailField;
+    private EditText mPasswordField;
+    private EditText mEmailSignUpField;
+    private EditText mPasswordSignUpField;
+    private Button signUpBtn;
+    private Button loginBtn;
+    private Button signUpChangeBtn;
+    private Button loginChangeBtn;
+    private Button forgetPasswordChangeBtn;
 
-    LinearLayout loginLayout;
-    LinearLayout signUpLayout;
+    private LinearLayout loginLayout;
+    private LinearLayout signUpLayout;
+    private LinearLayout forgetPasswordLayout;
 
-    EditText userName;
-    EditText password;
-    Button login;
+    private EditText userName;
+    private EditText password;
+    private Button login;
 
 
     @Override
@@ -59,10 +61,12 @@ public class LoginActivity extends AppCompatActivity {
         postBtn = findViewById(R.id.post_btn);
         loginLayout = findViewById(R.id.login_layout);
         signUpLayout = findViewById(R.id.signup_layout);
+        forgetPasswordLayout = findViewById(R.id.forget_password_layout);
         signUpChangeBtn = findViewById(R.id.signup_change_btn);
         loginChangeBtn = findViewById(R.id.login_change_btn);
         mEmailSignUpField = findViewById(R.id.username_signup_edit);
         mPasswordSignUpField = findViewById(R.id.password_signup_edit);
+        forgetPasswordChangeBtn = findViewById(R.id.forget_password_btn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +102,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showLogin();
+            }
+        });
+        forgetPasswordChangeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showForgetPassword();
             }
         });
     }
@@ -146,6 +156,21 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    private void showForgetPassword(){
+        LinearLayout.LayoutParams forgetPasswordParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 7.0f);
+        LinearLayout.LayoutParams signUpParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0.0f);
+        LinearLayout.LayoutParams loginParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f);
+        signUpLayout.setLayoutParams(signUpParam);
+        loginLayout.setLayoutParams(loginParam);
+        forgetPasswordLayout.setLayoutParams(forgetPasswordParam);
+
+    }
+
+    private void setForgetPasswordBtn(){
+
+
+    }
+
     private void loadMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -159,14 +184,21 @@ public class LoginActivity extends AppCompatActivity {
     private void showSignUp(){
         LinearLayout.LayoutParams signUpParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 7.0f);
         LinearLayout.LayoutParams loginParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f);
+        LinearLayout.LayoutParams forgetPasswordParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f);
         signUpLayout.setLayoutParams(signUpParam);
         loginLayout.setLayoutParams(loginParam);
+        forgetPasswordLayout.setLayoutParams(forgetPasswordParam);
+
+
     }
     private void showLogin(){
         LinearLayout.LayoutParams signUpParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f);
         LinearLayout.LayoutParams loginParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 7.0f);
+        LinearLayout.LayoutParams forgetPasswordParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f);
         signUpLayout.setLayoutParams(signUpParam);
         loginLayout.setLayoutParams(loginParam);
+        forgetPasswordLayout.setLayoutParams(forgetPasswordParam);
+
     }
 
 }
