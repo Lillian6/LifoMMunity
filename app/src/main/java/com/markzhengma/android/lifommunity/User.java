@@ -5,20 +5,27 @@ package com.markzhengma.android.lifommunity;
  */
 
 public class User {
-    private String userName;
-    private int userId;
-    private int numOfFollow;
-    private boolean gender;
-    private String location;
-    private String intro;
+    public String uid;
+    public String username;
+    public String email;
+    public String gender;
+    public int age;
+    public String location;
+    public String intro;
+    public int numOfFollow;
 
 
 
     public User(){}
 
-    public User(String userName, int userId, int numOfFollow){
-        this.userName=userName;
-        this.userId=userId;
+    public User(String uid, String username, String email, String gender, int age, String location, String intro, int numOfFollow){
+        this.uid = uid;
+        this.username = username;
+        this.email = email;
+        this.gender = gender;
+        this.age = age;
+        this.location = location;
+        this.intro =intro;
         this.numOfFollow=numOfFollow;
     }
 
