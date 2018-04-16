@@ -22,10 +22,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference userRef = database.getReference("users");
 
     private Button homeBtn;
     private Button postBtn;
@@ -33,6 +37,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordField;
     private EditText mEmailSignUpField;
     private EditText mPasswordSignUpField;
+    private EditText mUserNameSignUpField;
+    private EditText mAgeSignUpField;
+    private EditText mIntroSignUpField;
+
     private Button signUpBtn;
     private Button loginBtn;
     private Button signUpChangeBtn;
@@ -45,11 +53,6 @@ public class LoginActivity extends AppCompatActivity {
     private LinearLayout signUpLayout;
     private LinearLayout forgetPasswordLayout;
 
-    private EditText userName;
-    private EditText password;
-    private Button login;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,22 +60,28 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mEmailField = findViewById(R.id.username_edit);
-        mPasswordField = findViewById(R.id.password_edit);
-        signUpBtn = findViewById(R.id.signup_btn);
-        loginBtn = findViewById(R.id.login_btn);
         homeBtn = findViewById(R.id.home_btn);
         postBtn = findViewById(R.id.post_btn);
+
         loginLayout = findViewById(R.id.login_layout);
-        signUpLayout = findViewById(R.id.signup_layout);
-        forgetPasswordLayout = findViewById(R.id.forget_password_layout);
+        mEmailField = findViewById(R.id.email_edit);
+        mPasswordField = findViewById(R.id.password_edit);
+        loginBtn = findViewById(R.id.login_btn);
         signUpChangeBtn = findViewById(R.id.signup_change_btn);
-        loginChangeBtn = findViewById(R.id.login_change_btn);
-        mEmailSignUpField = findViewById(R.id.username_signup_edit);
-        mPasswordSignUpField = findViewById(R.id.password_signup_edit);
         forgetPasswordChangeBtn = findViewById(R.id.forget_password_btn);
+
+        signUpLayout = findViewById(R.id.signup_layout);
+        mEmailSignUpField = findViewById(R.id.email_signup_edit);
+        mPasswordSignUpField = findViewById(R.id.password_signup_edit);
+        mUserNameSignUpField = findViewById(R.id.username_signup_edit);
         genderSpinner = findViewById(R.id.gender_signup_spinner);
+        mAgeSignUpField = findViewById(R.id.age_signup_edit);
         locationSpinner = findViewById(R.id.location_signup_spinner);
+        mIntroSignUpField = findViewById(R.id.intro_signup_edit);
+        signUpBtn = findViewById(R.id.signup_btn);
+        loginChangeBtn = findViewById(R.id.login_change_btn);
+
+        forgetPasswordLayout = findViewById(R.id.forget_password_layout);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +174,16 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            userRef.child(user.getUid().toString()).setValue(new User(user.getUid().toString(),
+                                    mUserNameSignUpField.getText().toString(),
+                                    mEmailSignUpField.getText().toString(),
+                                    genderSpinner.getSelectedItem().toString(),
+                                    Integer.valueOf(mAgeSignUpField.getText().toString()),
+                                    locationSpinner.getSelectedItem().toString(),
+                                    mIntroSignUpField.getText().toString(),
+                                    0));
+
                             Toast.makeText(LoginActivity.this, "New user: " + user.getEmail() + ", welcome!", Toast.LENGTH_SHORT).show();
 
                             startActivity(intent);

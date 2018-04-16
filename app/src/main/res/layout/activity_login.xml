@@ -7,191 +7,198 @@
     android:orientation="vertical"
     android:background="@color/colorYellow"
     tools:context="com.markzhengma.android.lifommunity.LoginActivity">
-
-    <LinearLayout
-        android:id="@+id/login_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0"
-        android:orientation="vertical"
-        android:padding="32dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Please log in or sign up. \nYou could only browse other posts if you don't log in."/>
-
-        <EditText
-            android:id="@+id/username_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/album_description_username"
-            android:inputType="textCapWords"
-            android:padding="16dp"/>
-
-        <EditText
-            android:id="@+id/password_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/album_description_password"
-            android:inputType="textPassword"
-            android:padding="16dp"/>
-
-        <Button
-            android:id="@+id/login_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/log_in"
-            android:background="@color/colorGreen"
-            android:textColor="@color/colorYellow"
-            android:padding="16dp"
-            android:textAllCaps="true" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/forget_password_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:background="@color/btnBg"
-                android:textColor="@color/colorGreen"
-                android:text="@string/forget_password" />
-
-            <Button
-                android:id="@+id/signup_change_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="@color/btnBg"
-                android:textColor="@color/colorGreen"
-                android:text="@string/sign_up" />
-        </RelativeLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/signup_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:orientation="vertical"
-        android:padding="32dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="You can create your account on this page. \nYou will use the email and password to log in."/>
-
-        <EditText
-            android:id="@+id/username_signup_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/album_description_username"
-            android:inputType="textCapWords"
-            android:padding="16dp"/>
-        <EditText
-            android:id="@+id/password_signup_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/album_description_password"
-            android:inputType="textPassword"
-            android:padding="16dp"/>
-        <EditText
-            android:id="@+id/name_signup_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/userName"
-            android:inputType="text"
-            android:padding="16dp"/>
         <LinearLayout
+            android:id="@+id/login_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:orientation="vertical"
+            android:padding="32dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Gender"
-                android:textSize="18sp"/>
-            <Spinner
-                android:id="@+id/gender_signup_spinner"
+                android:text="Please log in or sign up. \nYou could only browse other posts if you don't log in."/>
+
+            <EditText
+                android:id="@+id/email_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/album_description_username"
+                android:inputType="textCapWords"
+                android:padding="16dp"/>
+
+            <EditText
+                android:id="@+id/password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/album_description_password"
+                android:inputType="textPassword"
+                android:padding="16dp"/>
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/log_in"
+                android:background="@color/colorGreen"
+                android:textColor="@color/colorYellow"
+                android:padding="16dp"
+                android:textAllCaps="true" />
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/forget_password_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/btnBg"
+                    android:textColor="@color/colorGreen"
+                    android:text="@string/forget_password" />
+
+                <Button
+                    android:id="@+id/signup_change_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/btnBg"
+                    android:textColor="@color/colorGreen"
+                    android:text="@string/sign_up" />
+            </RelativeLayout>
         </LinearLayout>
-        <EditText
-            android:id="@+id/age_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/age"
-            android:inputType="number"
-            android:padding="16dp"/>
         <LinearLayout
+            android:id="@+id/signup_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            android:orientation="vertical"
+            android:padding="32dp">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="You can create your account on this page. \nYou will use the email and password to log in."/>
+
+                    <EditText
+                        android:id="@+id/email_signup_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/album_description_username"
+                        android:inputType="textCapWords"
+                        android:padding="16dp"/>
+                    <EditText
+                        android:id="@+id/password_signup_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/album_description_password"
+                        android:inputType="textPassword"
+                        android:padding="16dp"/>
+                    <EditText
+                        android:id="@+id/username_signup_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/userName"
+                        android:inputType="text"
+                        android:padding="16dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gender"
+                            android:textSize="18sp"/>
+                        <Spinner
+                            android:id="@+id/gender_signup_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/age_signup_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/age"
+                        android:inputType="number"
+                        android:padding="16dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/location"
+                            android:textSize="18sp"/>
+                        <Spinner
+                            android:id="@+id/location_signup_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/intro_signup_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/intro"
+                        android:inputType="text"
+                        android:padding="16dp"/>
+
+                    <Button
+                        android:id="@+id/signup_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorGreen"
+                        android:textColor="@color/colorYellow"
+                        android:text="@string/sign_up" />
+                    <Button
+                        android:id="@+id/login_change_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Back"
+                        android:background="@color/btnBg"
+                        android:textColor="@color/colorGreen"
+                        android:padding="16dp"
+                        android:textAllCaps="true" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/forget_password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            android:orientation="vertical"
+            android:padding="32dp">
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="If you forget the password, please enter your email address."/>
+
+            <EditText
+                android:id="@+id/username_forget_password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/album_description_username"
+                android:inputType="textCapWords"
+                android:padding="16dp"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Location"
-                android:textSize="18sp"/>
-            <Spinner
-                android:id="@+id/location_signup_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:text="Reset Password"/>
+
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/intro_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/intro"
-            android:inputType="text"
-            android:padding="16dp"/>
-
-        <Button
-            android:id="@+id/signup_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@color/colorGreen"
-            android:textColor="@color/colorYellow"
-            android:text="@string/sign_up" />
-        <Button
-            android:id="@+id/login_change_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:background="@color/btnBg"
-            android:textColor="@color/colorGreen"
-            android:padding="16dp"
-            android:textAllCaps="true" />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/forget_password_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0"
-        android:orientation="vertical"
-        android:padding="32dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="If you forget the password, please enter your email address."/>
-
-        <EditText
-            android:id="@+id/username_forget_password_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/album_description_username"
-            android:inputType="textCapWords"
-            android:padding="16dp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reset Password"/>
-
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -219,7 +226,5 @@
             android:layout_weight="1"
             android:text="Profile"/>
     </LinearLayout>
-
-
 
 </LinearLayout>
