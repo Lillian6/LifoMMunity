@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="32dp"
     android:background="@color/colorYellow"
     tools:context="com.markzhengma.android.lifommunity.LoginActivity">
 
@@ -13,7 +12,7 @@
         android:id="@+id/login_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="0"
         android:orientation="vertical"
         android:padding="32dp">
 
@@ -75,7 +74,7 @@
         android:id="@+id/signup_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0"
+        android:layout_weight="7"
         android:orientation="vertical"
         android:padding="32dp">
 
@@ -91,13 +90,62 @@
             android:hint="@string/album_description_username"
             android:inputType="textCapWords"
             android:padding="16dp"/>
-
         <EditText
             android:id="@+id/password_signup_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/album_description_password"
             android:inputType="textPassword"
+            android:padding="16dp"/>
+        <EditText
+            android:id="@+id/name_signup_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/userName"
+            android:inputType="text"
+            android:padding="16dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Gender"
+                android:textSize="18sp"/>
+            <Spinner
+                android:id="@+id/gender_signup_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/age_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/age"
+            android:inputType="number"
+            android:padding="16dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Location"
+                android:textSize="18sp"/>
+            <Spinner
+                android:id="@+id/location_signup_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/intro_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/intro"
+            android:inputType="text"
             android:padding="16dp"/>
 
         <Button

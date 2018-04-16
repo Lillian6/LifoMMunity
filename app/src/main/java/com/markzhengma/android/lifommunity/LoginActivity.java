@@ -10,9 +10,11 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button signUpChangeBtn;
     private Button loginChangeBtn;
     private Button forgetPasswordChangeBtn;
+    private Spinner locationSpinner;
+    private Spinner genderSpinner;
 
     private LinearLayout loginLayout;
     private LinearLayout signUpLayout;
@@ -67,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
         mEmailSignUpField = findViewById(R.id.username_signup_edit);
         mPasswordSignUpField = findViewById(R.id.password_signup_edit);
         forgetPasswordChangeBtn = findViewById(R.id.forget_password_btn);
+        genderSpinner = findViewById(R.id.gender_signup_spinner);
+        locationSpinner = findViewById(R.id.location_signup_spinner);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +116,20 @@ public class LoginActivity extends AppCompatActivity {
                 showForgetPassword();
             }
         });
+
+        createAdapter();
+    }
+
+    private void createAdapter(){
+        ArrayAdapter<CharSequence> locationAdapter = ArrayAdapter.createFromResource(this,
+                R.array.locations_array, android.R.layout.simple_spinner_item);
+        locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        locationSpinner.setAdapter(locationAdapter);
+
+        ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(this,
+                R.array.genders_array, android.R.layout.simple_spinner_item);
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderSpinner.setAdapter(genderAdapter);
     }
 
     private void signInUser(){
