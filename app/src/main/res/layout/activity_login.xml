@@ -99,7 +99,7 @@
                         android:id="@+id/password_signup_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/album_description_password"
+                        android:hint="@string/password_signup"
                         android:inputType="textPassword"
                         android:padding="16dp"/>
                     <EditText
