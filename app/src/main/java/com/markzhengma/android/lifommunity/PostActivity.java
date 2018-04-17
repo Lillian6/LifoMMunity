@@ -8,21 +8,31 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class PostActivity extends AppCompatActivity {
-    Button homeBtn;
-    Button postBtn;
-    Button profileBtn;
-    EditText titleTextView;
-    EditText contentTextView;
-    Button submitPostBtn;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-    String titleText;
-    String contentText;
+public class PostActivity extends AppCompatActivity {
+    private Button homeBtn;
+    private Button postBtn;
+    private Button profileBtn;
+    private EditText titleTextView;
+    private EditText contentTextView;
+    private Button submitPostBtn;
+
+    private String titleText;
+    private String contentText;
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference postReference = database.getReference("post");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+
+
 
         homeBtn = findViewById(R.id.home_btn);
         postBtn = findViewById(R.id.post_btn);
@@ -32,11 +42,15 @@ public class PostActivity extends AppCompatActivity {
         contentTextView = findViewById(R.id.post_content_edit_text);
         submitPostBtn = findViewById(R.id.submit_post_btn);
 
+
+
         setHomeBtnListener();
         setProfileBtnListener();
 
         setSubmitPostListener();
     }
+
+
 
     public void setHomeBtnListener() {
         homeBtn.setOnClickListener(new View.OnClickListener(){
@@ -81,12 +95,18 @@ public class PostActivity extends AppCompatActivity {
         finish();
     }
 
+    public void sendToFirebase(View view){
+        PostData postData = new PostData(titleText, contentText);
+        postReference.child("post1").setValue(postData);
+    }
+
     private void setSubmitPostListener(){
         submitPostBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 getPostData();
                 setPostData();
+                sendToFirebase(view);
             }
         });
     }
