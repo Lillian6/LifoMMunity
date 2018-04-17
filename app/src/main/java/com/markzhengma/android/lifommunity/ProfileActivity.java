@@ -70,6 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
         userRef  = database.getReference("users");
         user = mAuth.getCurrentUser();
 
+
         if(user == null){
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
