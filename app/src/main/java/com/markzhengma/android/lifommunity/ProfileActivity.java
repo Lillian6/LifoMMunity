@@ -78,11 +78,11 @@ public class ProfileActivity extends AppCompatActivity {
             childRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    usernameTextView.setText(dataSnapshot.child("username").getValue().toString());
-                    emailTextView.setText(dataSnapshot.child("email").getValue().toString());
-                    genderTextView.setText(dataSnapshot.child("gender").getValue().toString());
-                    locationTextView.setText(dataSnapshot.child("location").getValue().toString());
-                    introTextView.setText(dataSnapshot.child("intro").getValue().toString());
+                    //usernameTextView.setText(dataSnapshot.child("username").getValue().toString());
+                    //emailTextView.setText(dataSnapshot.child("email").getValue().toString());
+                    //genderTextView.setText(dataSnapshot.child("gender").getValue().toString());
+                    //locationTextView.setText(dataSnapshot.child("location").getValue().toString());
+                    //introTextView.setText(dataSnapshot.child("intro").getValue().toString());
                 }
 
                 @Override
