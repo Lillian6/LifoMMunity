@@ -56,12 +56,9 @@ public class PostActivity extends AppCompatActivity {
             }
         };
 
-        FirebaseUser user = auth.getCurrentUser();
-
 
         setHomeBtnListener();
         setProfileBtnListener();
-
         setSubmitPostListener();
     }
 
@@ -118,7 +115,6 @@ public class PostActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.putExtra("NEW_POST", newPost);
         setResult(RESULT_OK, intent);
-
         finish();
     }
 
