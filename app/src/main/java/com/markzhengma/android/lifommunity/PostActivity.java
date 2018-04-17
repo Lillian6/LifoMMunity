@@ -23,8 +23,7 @@ public class PostActivity extends AppCompatActivity {
     private String titleText;
     private String contentText;
 
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference postReference = database.getReference("post");
+
 
 
     @Override
@@ -41,8 +40,13 @@ public class PostActivity extends AppCompatActivity {
         titleTextView = findViewById(R.id.post_title_edit_text);
         contentTextView = findViewById(R.id.post_content_edit_text);
         submitPostBtn = findViewById(R.id.submit_post_btn);
+        titleText = titleTextView.getText().toString();
+        contentText = contentTextView.getText().toString();
 
-
+        //write to firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference postReference = database.getReference(titleText);
+        postReference.setValue(contentText);
 
         setHomeBtnListener();
         setProfileBtnListener();
@@ -95,10 +99,7 @@ public class PostActivity extends AppCompatActivity {
         finish();
     }
 
-    public void sendToFirebase(View view){
-        PostData postData = new PostData(titleText, contentText);
-        postReference.child("post1").setValue(postData);
-    }
+
 
     private void setSubmitPostListener(){
         submitPostBtn.setOnClickListener(new View.OnClickListener(){
@@ -106,7 +107,6 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View view){
                 getPostData();
                 setPostData();
-                sendToFirebase(view);
             }
         });
     }
