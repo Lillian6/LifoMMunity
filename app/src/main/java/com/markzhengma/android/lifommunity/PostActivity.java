@@ -1,6 +1,7 @@
 package com.markzhengma.android.lifommunity;
 
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ public class PostActivity extends AppCompatActivity {
     private Button profileBtn;
     private Button postBtn;
     private Button submitPostBtn;
+    private Button addImageBtn;
+    private Button cameraBtn;
     private EditText titleTextView;
     private EditText contentTextView;
 
@@ -43,6 +46,8 @@ public class PostActivity extends AppCompatActivity {
         titleTextView = findViewById(R.id.post_title_edit_text);
         contentTextView = findViewById(R.id.post_content_edit_text);
         submitPostBtn = findViewById(R.id.submit_post_btn);
+        addImageBtn = findViewById(R.id.add_image_button);
+        cameraBtn = findViewById(R.id.camera_button);
         titleText = titleTextView.getText().toString();
         contentText = contentTextView.getText().toString();
 
@@ -56,10 +61,10 @@ public class PostActivity extends AppCompatActivity {
             }
         };
 
-
         setHomeBtnListener();
         setProfileBtnListener();
         setSubmitPostListener();
+        setCameraBtnListener();
     }
 
 
@@ -132,4 +137,27 @@ public class PostActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void setAddImageBtnListener(){
+        addImageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void setCameraBtnListener(){
+        cameraBtn.setOnClickListener(new View.OnClickListener() {
+            static final int REQUEST_IMAGE_CAPTURE = 1;
+            @Override
+            public void onClick(View v) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                }
+            }
+        });
+    }
+
 }

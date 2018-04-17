@@ -45,6 +45,7 @@
                 android:hint="Share your story here!"
                 android:textColorHint="@color/colorGreen"/>
             <Button
+                android:id="@+id/add_image_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/postText"
@@ -53,6 +54,16 @@
                 android:layout_marginTop="16dp"
                 android:background="@color/colorGreen"
                 android:text="Add an image"/>
+            <Button
+                android:id="@+id/camera_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/postText"
+                android:drawableStart="@drawable/cam_drawable"
+                android:paddingHorizontal="32dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorGreen"
+                android:text="Camera"/> />
             <Button
                 android:id="@+id/submit_post_btn"
                 android:layout_width="wrap_content"
