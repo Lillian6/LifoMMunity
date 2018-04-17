@@ -26,7 +26,7 @@ public class PostActivity extends AppCompatActivity {
     private String contentText;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference postRef;
+    private DatabaseReference postRef = database.getReference("post");
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseAuth.AuthStateListener authStateListener;
 
@@ -121,12 +121,13 @@ public class PostActivity extends AppCompatActivity {
 
 
     private void setSubmitPostListener(){
+
         submitPostBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 getPostData();
-                postRef = database.getReference(titleText);
-                postRef.setValue(contentText);
+                DatabaseReference userPostRef = postRef.child(titleText);
+                userPostRef.setValue(contentText);
                 setPostData();
             }
         });
