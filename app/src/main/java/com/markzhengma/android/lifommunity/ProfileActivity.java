@@ -22,16 +22,16 @@ import org.w3c.dom.Text;
 import java.sql.Ref;
 
 public class ProfileActivity extends AppCompatActivity {
-    Button homeBtn;
-    Button postBtn;
-    Button profileBtn;
-    Button settingBtn;
-    Button signOutBtn;
-    TextView usernameTextView;
-    TextView emailTextView;
-    TextView genderTextView;
-    TextView locationTextView;
-    TextView introTextView;
+    private Button homeBtn;
+    private Button postBtn;
+    private Button profileBtn;
+    private Button settingBtn;
+    private Button signOutBtn;
+    private TextView usernameTextView;
+    private TextView emailTextView;
+    private TextView genderTextView;
+    private TextView locationTextView;
+    private TextView introTextView;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
@@ -69,6 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         userRef  = database.getReference("users");
         user = mAuth.getCurrentUser();
+
 
         if(user == null){
             Intent intent = new Intent(this, LoginActivity.class);

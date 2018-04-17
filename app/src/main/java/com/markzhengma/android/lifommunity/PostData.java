@@ -14,4 +14,20 @@ public class PostData implements Serializable {
         this.titleText = titleText;
         this.contentText = contentText;
     }
+
+    public String getTitleText() {
+        return titleText;
+    }
+
+    public void setTitleText(String titleText) {
+        this.titleText = titleText;
+    }
+
+    public String getContentText() {
+        return contentText;
+    }
+
+    public void setContentText(String contentText) {
+        this.contentText = contentText;
+    }
 }
