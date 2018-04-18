@@ -187,16 +187,23 @@
                 android:text="If you forget the password, please enter your email address."/>
 
             <EditText
-                android:id="@+id/username_forget_password_edit"
+                android:id="@+id/forget_password_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/album_description_username"
-                android:inputType="textCapWords"
+                android:inputType="textEmailAddress"
                 android:padding="16dp"/>
             <Button
+                android:id="@+id/reset_password_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reset Password"/>
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"/>
+
 
         </LinearLayout>
     <LinearLayout

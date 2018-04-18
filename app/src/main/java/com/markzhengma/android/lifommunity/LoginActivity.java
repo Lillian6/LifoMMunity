@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.text.Layout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,12 +41,15 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mUserNameSignUpField;
     private EditText mAgeSignUpField;
     private EditText mIntroSignUpField;
+    private EditText mResetPasswordField;
 
     private Button signUpBtn;
     private Button loginBtn;
     private Button signUpChangeBtn;
     private Button loginChangeBtn;
     private Button forgetPasswordChangeBtn;
+    private Button resetPasswordBtn;
+    private Button backBtn;
     private Spinner locationSpinner;
     private Spinner genderSpinner;
 
@@ -69,11 +73,14 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.login_btn);
         signUpChangeBtn = findViewById(R.id.signup_change_btn);
         forgetPasswordChangeBtn = findViewById(R.id.forget_password_btn);
+        resetPasswordBtn = findViewById(R.id.reset_password_button);
+        backBtn = findViewById(R.id.back_button);
 
         signUpLayout = findViewById(R.id.signup_layout);
         mEmailSignUpField = findViewById(R.id.email_signup_edit);
         mPasswordSignUpField = findViewById(R.id.password_signup_edit);
         mUserNameSignUpField = findViewById(R.id.username_signup_edit);
+        mResetPasswordField = findViewById(R.id.forget_password_edit);
         genderSpinner = findViewById(R.id.gender_signup_spinner);
         mAgeSignUpField = findViewById(R.id.age_signup_edit);
         locationSpinner = findViewById(R.id.location_signup_spinner);
@@ -123,6 +130,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showForgetPassword();
+            }
+        });
+        resetPasswordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResetPasswordBtn();
+            }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLogin();
             }
         });
 
@@ -205,9 +224,24 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void setForgetPasswordBtn(){
+    private void setResetPasswordBtn(){
+        String email = mResetPasswordField.getText().toString().trim();
 
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplicationContext(), "Enter your email!", Toast.LENGTH_SHORT).show();
+            return; }
 
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Check email to reset your password!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Fail to send reset password email!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private void loadMainActivity(){
