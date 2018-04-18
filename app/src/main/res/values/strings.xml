@@ -27,6 +27,18 @@
     <string name="post">Post</string>
     <string name="profile">Profile</string>
     <string name="menu">Menu</string>
+    <string name="title">Title:</string>
+    <string name="title_description">A topic to attract others' eyeballs!</string>
+    <string name="content">Content:</string>
+    <string name="content_description">Share your story here!</string>
+    <string name="add_image">Add an Image</string>
+    <string name="camera">Camera</string>
+    <string name="my_name">My Name</string>
+    <string name="my_email">My Email</string>
+    <string name="my_gender">My Gender</string>
+    <string name="my_posts">My Posts</string>
+    <string name="favorites">Favorites</string>
+    <string name="log_out">Log Out</string>
 
     <string-array name="locations_array">
         <item>New York</item>
