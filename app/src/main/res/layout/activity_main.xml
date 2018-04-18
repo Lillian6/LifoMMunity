@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="menu"
+            android:text="@string/menu"
             android:layout_marginRight="8dp">
 
         </Button>
@@ -276,21 +276,21 @@
             android:background="@color/colorGreen"
             android:textColor="@color/colorYellow"
             android:layout_weight="1"
-            android:text="Home"/>
+            android:text="@string/home"/>
         <Button
             android:id="@+id/post_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/btnBg"
             android:layout_weight="1"
-            android:text="Post"/>
+            android:text="@string/post"/>
         <Button
             android:id="@+id/profile_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/btnBg"
             android:layout_weight="1"
-            android:text="Profile"/>
+            android:text="@string/profile"/>
     </LinearLayout>
 
 </LinearLayout>

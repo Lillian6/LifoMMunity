@@ -18,6 +18,15 @@
     <string name="intro">Introduction</string>
     <string name="save">Save</string>
     <string name="location_prompt">Choose a city</string>
+    <string name="login_description">Please log in or sign up. \nYou could only browse other posts if you don't log in.</string>
+    <string name="signup_description">You can create your account on this page. \nYou will use the email and password to log in.</string>
+    <string name="forget_password_description">If you forget the password, please enter your email address.</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="back">Back</string>
+    <string name="home">Home</string>
+    <string name="post">Post</string>
+    <string name="profile">Profile</string>
+    <string name="menu">Menu</string>
 
     <string-array name="locations_array">
         <item>New York</item>

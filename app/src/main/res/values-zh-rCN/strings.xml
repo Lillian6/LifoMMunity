@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lifommunity</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="sign_up">注册</string>
+    <string name="log_in">登录</string>
+    <string name="album_description_username">邮箱</string>
+    <string name="album_description_password">密码</string>
+    <string name="password_signup">密码（至少8位）</string>
+    <string name="settings">设置</string>
+    <string name="userName">你的名字</string>
+    <string name="gender">你的性别</string>
+    <string name="female">女</string>
+    <string name="male">男</string>
+    <string name="other">其他</string>
+    <string name="age">年龄</string>
+    <string name="location">地点</string>
+    <string name="intro">介绍</string>
+    <string name="save">保存</string>
+    <string name="location_prompt">选择一个城市</string>
+</resources>
