@@ -18,4 +18,25 @@
     <string name="intro">介绍</string>
     <string name="save">保存</string>
     <string name="location_prompt">选择一个城市</string>
+    <string name="login_description">请登录或注册。如果登录只能浏览。</string>
+    <string name="signup_description">你可以用邮箱和密码创建账户。</string>
+    <string name="forget_password_description">如果你忘记密码，请输入你的邮箱地址。</string>
+    <string name="reset_password">重置密码</string>
+    <string name="back">返回</string>
+    <string name="home">主页</string>
+    <string name="post">发布</string>
+    <string name="profile">我的</string>
+    <string name="menu">菜单</string>
+    <string name="title">题目：</string>
+    <string name="title_description">亮瞎别人的双眼吧！</string>
+    <string name="content">内容：</string>
+    <string name="content_description">分享你的故事吧！</string>
+    <string name="add_image">上传图片</string>
+    <string name="camera">相机</string>
+    <string name="my_name">我的名字</string>
+    <string name="my_email">我的邮箱</string>
+    <string name="my_gender">我的性别</string>
+    <string name="my_posts">我的发布</string>
+    <string name="favorites">我的喜欢</string>
+    <string name="log_out">退出</string>
 </resources>
