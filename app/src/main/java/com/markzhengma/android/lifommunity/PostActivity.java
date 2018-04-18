@@ -38,6 +38,8 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseAuth.AuthStateListener authStateListener;
 
+    private static final int RC_PHOTO_PICKER = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,9 +151,17 @@ public class PostActivity extends AppCompatActivity {
         addImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) image.getDrawable()).getBitmap())); // Save image to Firebase
+                selectImage();
+               // picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) image.getDrawable()).getBitmap())); // Save image to Firebase
             }
         });
+    }
+
+    private void selectImage(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/jpeg");
+        intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+        startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
     }
 
     //I want to make the picture that the camera took to be saved into firebase as well as the main page
