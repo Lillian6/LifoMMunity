@@ -43,6 +43,7 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
 
     private static final int RC_PHOTO_PICKER = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 2;
     private ImageView imageView;
 
 
@@ -182,6 +183,15 @@ public class PostActivity extends AppCompatActivity {
             } catch (FileNotFoundException e) {
                 Toast.makeText(this, "Error decoding photo", Toast.LENGTH_SHORT).show();
             }
+        }else if(requestCode == REQUEST_IMAGE_CAPTURE){
+            Uri photoUrl = data.getData();
+            try {
+                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(thumbnail);
+                picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
+            } catch (Exception e) {
+                Toast.makeText(this, "Error decoding photo", Toast.LENGTH_SHORT).show();
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -216,7 +226,7 @@ public class PostActivity extends AppCompatActivity {
     //I want to make the picture that the camera took to be saved into firebase as well as the main page
     private void setCameraBtnListener(){
         cameraBtn.setOnClickListener(new View.OnClickListener() {
-            static final int REQUEST_IMAGE_CAPTURE = 1;
+
             @Override
             public void onClick(View v) {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
