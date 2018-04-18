@@ -144,6 +144,7 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
+    //I want to allow the user to upload his or her local image and save the image to the firebase as well as the main page
     private void setAddImageBtnListener(){
         addImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +154,7 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
+    //I want to make the picture that the camera took to be saved into firebase as well as the main page
     private void setCameraBtnListener(){
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             static final int REQUEST_IMAGE_CAPTURE = 1;
