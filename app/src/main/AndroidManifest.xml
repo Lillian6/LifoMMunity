@@ -16,16 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".PostActivity"
-                    android:label="Post"/>
-        <activity android:name=".ProfileActivity"
-                    android:label="Profile"/>
-        <activity android:name=".LoginActivity"
-                    android:label="Login"></activity>
-        <activity android:name=".SettingsActivity"
-            android:label="Settings"></activity>
-
+        <activity
+            android:name=".PostActivity"
+            android:label="Post" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="Profile" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="Settings" />
+        <activity android:name=".FullPostActivity"
+            android:label="Full Post"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

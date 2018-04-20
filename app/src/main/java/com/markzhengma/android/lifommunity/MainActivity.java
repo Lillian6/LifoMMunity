@@ -173,4 +173,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    public void openFullPost(View view) {
+        Intent intent = new Intent(this, FullPostActivity.class);
+        startActivity(intent);
+    }
 }
