@@ -9,15 +9,21 @@
         />
 
     <item
-        android:id="@+id/save"
-        android:icon="@android:drawable/ic_menu_save"
-        android:title="Save"
+        android:id="@+id/email"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="Email"
         app:showAsAction="always"
         />
 
     <item
-        android:id="@+id/RecyclerView_action"
-        android:title="Setting"
+        android:id="@+id/Home_action"
+        android:title="Home"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/Post_action"
+        android:title="Write Post"
         app:showAsAction="never"
         />
 
