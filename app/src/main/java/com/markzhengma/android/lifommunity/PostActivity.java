@@ -46,11 +46,12 @@ public class PostActivity extends Fragment {
     private String titleText;
     private String contentText;
 
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference postRef = database.getReference("post");
-    private DatabaseReference picRef = database.getReference("picture");
-    private FirebaseAuth auth = FirebaseAuth.getInstance();
+    private FirebaseDatabase database;
+    private DatabaseReference postRef;
+    private DatabaseReference picRef;
+    private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseUser user;
 
     private static final int RC_PHOTO_PICKER = 1;
     private ImageView imageView;
@@ -62,16 +63,12 @@ public class PostActivity extends Fragment {
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        postRef = database.getReference("post");
+        picRef = database.getReference("picture");
+        user = mAuth.getCurrentUser();
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                if (user == null)
-                    startActivity(intent);
-            }
-        };
 
 //        homeBtn = getView().findViewById(R.id.home_btn);
 //        postBtn = getView().findViewById(R.id.post_btn);
@@ -99,16 +96,25 @@ public class PostActivity extends Fragment {
 
 
     @Override
-    public void onStart() {
-        super.onStart();
-        auth.addAuthStateListener(authStateListener);
+    public void onResume() {
+        super.onResume();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                if (user == null)
+                    Log.v("NOT LOGGED IN", "**************************************");
+                startActivity(intent);
+            }
+        };
     }
 
     @Override
 
     public void onStop() {
         super.onStop();
-        auth.removeAuthStateListener(authStateListener);
+//        auth.removeAuthStateListener(authStateListener);
     }
 
 

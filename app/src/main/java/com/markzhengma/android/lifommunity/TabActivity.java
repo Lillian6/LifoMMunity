@@ -1,5 +1,6 @@
 package com.markzhengma.android.lifommunity;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,7 +21,18 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class TabActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference userRef;
+    private FirebaseUser user;
+    private Intent intent;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -66,6 +78,11 @@ public class TabActivity extends AppCompatActivity {
             }
         });
 
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        userRef  = database.getReference("users");
+        user = mAuth.getCurrentUser();
+        intent = new Intent(this, LoginActivity.class);
     }
 
 
@@ -110,9 +127,9 @@ public class TabActivity extends AppCompatActivity {
                 case 1:
                     PostActivity tab2 = new PostActivity();
                     return tab2;
-//                case 2:
-//                    ProfileActivity tab3 = new ProfileActivity();
-//                    return tab3;
+                case 2:
+                    ProfileActivity tab3 = new ProfileActivity();
+                    return tab3;
                 default:
                     return null;
             }
@@ -121,7 +138,21 @@ public class TabActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 2;
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position){
+            switch (position){
+                case 0:
+                    return "ALL";
+                case 1:
+                    return "POST";
+                case 2:
+                    return "PROFILE";
+                default:
+                    return null;
+            }
         }
     }
 }

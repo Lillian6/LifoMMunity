@@ -9,6 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.support.v4.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +27,7 @@ import org.w3c.dom.Text;
 
 import java.sql.Ref;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends Fragment {
     private Button homeBtn;
     private Button postBtn;
     private Button profileBtn;
@@ -39,40 +45,42 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseUser user;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState){
+        View rootView = inflater.inflate(R.layout.activity_profile, container, false);
 
-        homeBtn = findViewById(R.id.home_btn);
-        postBtn = findViewById(R.id.post_btn);
-        profileBtn = findViewById(R.id.profile_btn);
+        homeBtn = rootView.findViewById(R.id.home_btn);
+        postBtn = rootView.findViewById(R.id.post_btn);
+        profileBtn = rootView.findViewById(R.id.profile_btn);
 
-        settingBtn = findViewById(R.id.settings_button);
+        settingBtn = rootView.findViewById(R.id.settings_button);
 
-        signOutBtn = findViewById(R.id.signout_act_btn);
-        usernameTextView = findViewById(R.id.username_profile);
-        emailTextView = findViewById(R.id.email_profile);
-        genderTextView = findViewById(R.id.gender_profile);
-        locationTextView = findViewById(R.id.location_profile);
-        introTextView = findViewById(R.id.intro_profile);
+        signOutBtn = rootView.findViewById(R.id.signout_act_btn);
+        usernameTextView = rootView.findViewById(R.id.username_profile);
+        emailTextView = rootView.findViewById(R.id.email_profile);
+        genderTextView = rootView.findViewById(R.id.gender_profile);
+        locationTextView = rootView.findViewById(R.id.location_profile);
+        introTextView = rootView.findViewById(R.id.intro_profile);
 
-        setHomeBtnListener();
-        setPostBtnListener();
-        setSettingBtnListener();
-        setSignOutBtnListener();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         userRef  = database.getReference("users");
         user = mAuth.getCurrentUser();
 
+//        setHomeBtnListener();
+//        setPostBtnListener();
+        setSettingBtnListener();
+        setSignOutBtnListener();
+
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         if(user == null){
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         }else{
             DatabaseReference childRef = userRef.child(user.getUid().toString());
@@ -88,7 +96,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(ProfileActivity.this, "Error loading Firebase", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Error loading Firebase", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -96,33 +104,33 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-    public void setHomeBtnListener() {
-        homeBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadMainActivity();
-            }
-        });
-    }
-
-    private void loadMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void setPostBtnListener() {
-        postBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadPostActivity();
-            }
-        });
-    }
-
-    private void loadPostActivity(){
-        Intent intent = new Intent(this, PostActivity.class);
-        startActivity(intent);
-    }
+//    public void setHomeBtnListener() {
+//        homeBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                loadMainActivity();
+//            }
+//        });
+//    }
+//
+//    private void loadMainActivity(){
+//        Intent intent = new Intent(getActivity(), MainActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    public void setPostBtnListener() {
+//        postBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                loadPostActivity();
+//            }
+//        });
+//    }
+//
+//    private void loadPostActivity(){
+//        Intent intent = new Intent(getActivity(), PostActivity.class);
+//        startActivity(intent);
+//    }
 
     public void setSettingBtnListener() {
         settingBtn.setOnClickListener(new View.OnClickListener(){
@@ -146,13 +154,13 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     public void loadSettingsActivity(){
-        Intent intent = new Intent(this, SettingsActivity.class);
+        Intent intent = new Intent(getActivity(), SettingsActivity.class);
         startActivity(intent);
     }
 
     private void signOutUser(){
         mAuth.signOut();
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
     }
 
