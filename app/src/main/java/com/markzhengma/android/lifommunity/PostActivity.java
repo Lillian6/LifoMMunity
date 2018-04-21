@@ -34,9 +34,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.FileNotFoundException;
 
 public class PostActivity extends Fragment {
-//    private Button homeBtn;
-//    private Button profileBtn;
-//    private Button postBtn;
     private Button submitPostBtn;
     private Button addImageBtn;
     private Button cameraBtn;
@@ -69,31 +66,18 @@ public class PostActivity extends Fragment {
         picRef = database.getReference("picture");
         user = mAuth.getCurrentUser();
 
-
-//        homeBtn = getView().findViewById(R.id.home_btn);
-//        postBtn = getView().findViewById(R.id.post_btn);
-//        profileBtn = getView().findViewById(R.id.profile_btn);
-
         titleTextView = rootView.findViewById(R.id.post_title_edit_text);
         contentTextView = rootView.findViewById(R.id.post_content_edit_text);
         submitPostBtn = rootView.findViewById(R.id.submit_post_btn);
         addImageBtn = rootView.findViewById(R.id.add_image_button);
         cameraBtn = rootView.findViewById(R.id.camera_button);
         imageView = rootView.findViewById(R.id.post_image_view);
-        //        setHomeBtnListener();
-        //        setProfileBtnListener();
         setSubmitPostListener();
         setCameraBtnListener();
         setAddImageBtnListener();
 
         return rootView;
     }
-
-//    @Override
-//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//
-//    }
-
 
     @Override
     public void onResume() {
@@ -117,50 +101,10 @@ public class PostActivity extends Fragment {
         mAuth.removeAuthStateListener(authStateListener);
     }
 
-
-//    public void setHomeBtnListener() {
-//        homeBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                loadMainActivity();
-//            }
-//        });
-//    }
-//
-//    private void loadMainActivity(){
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-//    }
-//
-//
-//    public void setProfileBtnListener(){
-//        profileBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                loadProfileActivity();
-//            }
-//        });
-//    }
-//
-//    private void loadProfileActivity(){
-//        Intent intent = new Intent(this, ProfileActivity.class);
-//        startActivity(intent);
-//    }
-
     private void getPostData(){
         titleText = titleTextView.getText().toString();
         contentText = contentTextView.getText().toString();
     }
-
-    private void setPostData(){
-        PostData newPost = new PostData(titleText, contentText);
-        Intent intent = new Intent();
-        intent.putExtra("NEW_POST", newPost);
-        getActivity().setResult(Activity.RESULT_OK, intent);
-        getActivity().finish();
-    }
-
-
 
     private void setSubmitPostListener(){
 
@@ -170,7 +114,6 @@ public class PostActivity extends Fragment {
                 getPostData();
                 DatabaseReference userPostRef = postRef.child(titleText);
                 userPostRef.setValue(contentText);
-//                setPostData();
             }
         });
     }

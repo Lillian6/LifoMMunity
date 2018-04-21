@@ -30,9 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends Fragment {
-//    Button homeBtn;
-//    Button postBtn;
-//    Button profileBtn;
     Button fullPostBtn;
     LinearLayout postlistLayout;
 
@@ -52,10 +49,6 @@ public class MainActivity extends Fragment {
                                 Bundle savedInstanceState){
         View rootView = inflater.inflate(R.layout.activity_main, container, false);
 
-
-//        setPostBtnListener();
-//        setProfileBtnListener();
-
         postIndex = 0;
 
         // Write a message to the database
@@ -64,9 +57,6 @@ public class MainActivity extends Fragment {
 
         myRef.setValue("Hello, World!");
 
-//        homeBtn = rootView.findViewById(R.id.home_btn);
-//        postBtn = rootView.findViewById(R.id.post_btn);
-//        profileBtn = rootView.findViewById(R.id.profile_btn);
         fullPostBtn = rootView.findViewById(R.id.full_post_btn);
         postlistLayout = rootView.findViewById(R.id.postlist_layout);
 
@@ -100,34 +90,6 @@ public class MainActivity extends Fragment {
             }
         });
     }
-
-//    public void setPostBtnListener() {
-//        postBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                loadPostActivity();
-//            }
-//        });
-//    }
-//
-//    private void loadPostActivity(){
-//        Intent intent = new Intent(this, PostActivity.class);
-//        startActivityForResult(intent, 111);
-//    }
-//
-//    public void setProfileBtnListener(){
-//        profileBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                loadProfileActivity();
-//            }
-//        });
-//    }
-//
-//    private void loadProfileActivity(){
-//        Intent intent = new Intent(this, ProfileActivity.class);
-//        startActivity(intent);
-//    }
 
 //    @Override
 //    protected void onActivityResult(int req, int res, Intent intent){

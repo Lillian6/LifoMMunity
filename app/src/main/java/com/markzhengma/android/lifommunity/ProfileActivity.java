@@ -28,9 +28,6 @@ import org.w3c.dom.Text;
 import java.sql.Ref;
 
 public class ProfileActivity extends Fragment {
-    private Button homeBtn;
-    private Button postBtn;
-    private Button profileBtn;
     private Button settingBtn;
     private Button signOutBtn;
     private TextView usernameTextView;
@@ -49,10 +46,6 @@ public class ProfileActivity extends Fragment {
                              Bundle savedInstanceState){
         View rootView = inflater.inflate(R.layout.activity_profile, container, false);
 
-        homeBtn = rootView.findViewById(R.id.home_btn);
-        postBtn = rootView.findViewById(R.id.post_btn);
-        profileBtn = rootView.findViewById(R.id.profile_btn);
-
         settingBtn = rootView.findViewById(R.id.settings_button);
 
         signOutBtn = rootView.findViewById(R.id.signout_act_btn);
@@ -67,8 +60,6 @@ public class ProfileActivity extends Fragment {
         userRef  = database.getReference("users");
         user = mAuth.getCurrentUser();
 
-//        setHomeBtnListener();
-//        setPostBtnListener();
         setSettingBtnListener();
         setSignOutBtnListener();
 
@@ -102,35 +93,6 @@ public class ProfileActivity extends Fragment {
         }
 
     }
-
-
-//    public void setHomeBtnListener() {
-//        homeBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                loadMainActivity();
-//            }
-//        });
-//    }
-//
-//    private void loadMainActivity(){
-//        Intent intent = new Intent(getActivity(), MainActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void setPostBtnListener() {
-//        postBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                loadPostActivity();
-//            }
-//        });
-//    }
-//
-//    private void loadPostActivity(){
-//        Intent intent = new Intent(getActivity(), PostActivity.class);
-//        startActivity(intent);
-//    }
 
     public void setSettingBtnListener() {
         settingBtn.setOnClickListener(new View.OnClickListener(){
