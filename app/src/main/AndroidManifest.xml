@@ -17,25 +17,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PostActivity"
-            android:label="Post" />
-        <activity
-            android:name=".ProfileActivity"
-            android:label="Profile" />
-        <activity
             android:name=".LoginActivity"
-            android:label="Login" />
+            android:label="Login"
+            android:parentActivityName=".TabActivity"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".SettingsActivity"
             android:label="Settings" />
         <activity
             android:name=".FullPostActivity"
             android:label="Full Post"
-            android:parentActivityName=".MainActivity"/>
-        <activity
-            android:name=".MainActivity"
-            android:label="Post List"
-            android:theme="@style/AppTheme"></activity>
+            android:parentActivityName=".TabActivity"/>
     </application>
 
 </manifest>

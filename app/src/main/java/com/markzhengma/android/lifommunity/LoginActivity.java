@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference userRef = database.getReference("users");
 
-    private Button homeBtn;
-    private Button postBtn;
+//    private Button homeBtn;
+//    private Button postBtn;
     private EditText mEmailField;
     private EditText mPasswordField;
     private EditText mEmailSignUpField;
@@ -66,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        homeBtn = findViewById(R.id.home_btn);
-        postBtn = findViewById(R.id.post_btn);
+//        homeBtn = findViewById(R.id.home_btn);
+//        postBtn = findViewById(R.id.post_btn);
 
         loginLayout = findViewById(R.id.login_layout);
         mEmailField = findViewById(R.id.email_edit);
@@ -104,18 +104,18 @@ public class LoginActivity extends AppCompatActivity {
                 createUser();
             }
         });
-        homeBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadMainActivity();
-            }
-        });
-        postBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadPostActivity();
-            }
-        });
+//        homeBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                loadMainActivity();
+//            }
+//        });
+//        postBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                loadPostActivity();
+//            }
+//        });
         signUpChangeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -245,16 +245,16 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    private void loadMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    private void loadPostActivity(){
-        Intent intent = new Intent(this, PostActivity.class);
-        startActivity(intent);
-    }
+//
+//    private void loadMainActivity(){
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    private void loadPostActivity(){
+//        Intent intent = new Intent(this, PostActivity.class);
+//        startActivity(intent);
+//    }
 
     private void showSignUp(){
         LinearLayout.LayoutParams signUpParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 7.0f);
