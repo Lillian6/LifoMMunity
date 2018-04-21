@@ -112,9 +112,9 @@ public class PostActivity extends Fragment {
 
     @Override
 
-    public void onStop() {
-        super.onStop();
-//        auth.removeAuthStateListener(authStateListener);
+    public void onPause() {
+        super.onPause();
+        mAuth.removeAuthStateListener(authStateListener);
     }
 
 

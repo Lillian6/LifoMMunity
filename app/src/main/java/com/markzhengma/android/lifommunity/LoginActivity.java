@@ -165,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
     private void signInUser(){
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
-        final Intent intent = new Intent(this, ProfileActivity.class);
+        final Intent intent = new Intent(this, TabActivity.class);
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -187,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
     private void createUser() {
         String email = mEmailSignUpField.getText().toString();
         String password = mPasswordSignUpField.getText().toString();
-        final Intent intent = new Intent(this, ProfileActivity.class);
+        final Intent intent = new Intent(this, TabActivity.class);
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
