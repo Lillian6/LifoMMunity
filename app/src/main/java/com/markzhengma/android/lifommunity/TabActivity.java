@@ -107,9 +107,9 @@ public class TabActivity extends AppCompatActivity {
                 case 0:
                     MainActivity tab1 = new MainActivity();
                     return tab1;
-//                case 1:
-//                    PostActivity tab2 = new PostActivity();
-//                    return tab2;
+                case 1:
+                    PostActivity tab2 = new PostActivity();
+                    return tab2;
 //                case 2:
 //                    ProfileActivity tab3 = new ProfileActivity();
 //                    return tab3;
@@ -121,7 +121,7 @@ public class TabActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 1;
+            return 2;
         }
     }
 }

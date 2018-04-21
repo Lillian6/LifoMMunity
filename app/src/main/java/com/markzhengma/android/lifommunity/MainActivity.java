@@ -195,7 +195,7 @@ public class MainActivity extends Fragment {
 //    }
 
     public void openFullPost(View view) {
-        Intent intent = new Intent(getActivity(), FullPostActivity.class);
+        Intent intent = new Intent(getActivity(), FullPostActivity.class);//changed "this" to "getActivity()" in order to be compatible with Fragment
         startActivity(intent);
     }
 }
