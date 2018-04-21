@@ -30,9 +30,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends Fragment {
-    Button homeBtn;
-    Button postBtn;
-    Button profileBtn;
+//    Button homeBtn;
+//    Button postBtn;
+//    Button profileBtn;
+    Button fullPostBtn;
     LinearLayout postlistLayout;
 
 
@@ -63,6 +64,14 @@ public class MainActivity extends Fragment {
 
         myRef.setValue("Hello, World!");
 
+//        homeBtn = rootView.findViewById(R.id.home_btn);
+//        postBtn = rootView.findViewById(R.id.post_btn);
+//        profileBtn = rootView.findViewById(R.id.profile_btn);
+        fullPostBtn = rootView.findViewById(R.id.full_post_btn);
+        postlistLayout = rootView.findViewById(R.id.postlist_layout);
+
+        setFullPostBtnListener();
+
         //read from database
 //        postRef.addValueEventListener(new ValueEventListener() {
 //            @Override
@@ -83,13 +92,13 @@ public class MainActivity extends Fragment {
 
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
-
-        homeBtn = (Button)getView().findViewById(R.id.home_btn);
-        postBtn = (Button)getView().findViewById(R.id.post_btn);
-        profileBtn = (Button)getView().findViewById(R.id.profile_btn);
-        postlistLayout = (LinearLayout)getView().findViewById(R.id.postlist_layout);
+    public void setFullPostBtnListener(){
+        fullPostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFullPost(view);
+            }
+        });
     }
 
 //    public void setPostBtnListener() {
