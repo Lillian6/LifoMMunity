@@ -1,6 +1,7 @@
 package com.markzhengma.android.lifommunity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -26,10 +27,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.FileNotFoundException;
 
@@ -51,7 +57,10 @@ public class PostActivity extends Fragment {
     private FirebaseUser user;
 
     private static final int RC_PHOTO_PICKER = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 2;
     private ImageView imageView;
+    private StorageReference mStorage;
+    private ProgressDialog mProgress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,15 +150,38 @@ public class PostActivity extends Fragment {
         if (resultCode != Activity.RESULT_OK) return;
 
         if (requestCode == RC_PHOTO_PICKER) {
-            Uri photoUrl = data.getData();
+            Uri photoUri = data.getData();
             try {
-                decodeUri(photoUrl);
+                decodeUri(photoUri);
                 picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
             } catch (FileNotFoundException e) {
                 Toast.makeText(getActivity(), "Error decoding photo", Toast.LENGTH_SHORT).show();
             }
         }
-        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE){
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(photo);
+            picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
+        }
+//            mProgress.setMessage("uploading image...");
+//            mProgress.show();
+//            Uri cameraUri = data.getData();
+//            StorageReference filePath = mStorage.child("photo").child(cameraUri.getLastPathSegment());
+//            filePath.getFile(cameraUri).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                    Toast.makeText(getActivity(), "Upload successfully", Toast.LENGTH_SHORT).show();
+//                    mProgress.dismiss();
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(getActivity(), "Failure Upload", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//            }
+//        super.onActivityResult(requestCode, resultCode, data);
     }
 
     // Compress and then display the image
@@ -182,10 +214,11 @@ public class PostActivity extends Fragment {
     //I want to make the picture that the camera took to be saved into firebase as well as the main page
     private void setCameraBtnListener(){
         cameraBtn.setOnClickListener(new View.OnClickListener() {
-            static final int REQUEST_IMAGE_CAPTURE = 1;
+
             @Override
             public void onClick(View v) {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
                 if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 }
