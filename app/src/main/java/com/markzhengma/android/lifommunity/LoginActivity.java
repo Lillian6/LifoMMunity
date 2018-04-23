@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference userRef = database.getReference("users");
 
-    private Button homeBtn;
-    private Button postBtn;
     private EditText mEmailField;
     private EditText mPasswordField;
     private EditText mEmailSignUpField;
@@ -61,11 +60,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         mAuth = FirebaseAuth.getInstance();
-
-        homeBtn = findViewById(R.id.home_btn);
-        postBtn = findViewById(R.id.post_btn);
 
         loginLayout = findViewById(R.id.login_layout);
         mEmailField = findViewById(R.id.email_edit);
@@ -100,18 +97,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createUser();
-            }
-        });
-        homeBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadMainActivity();
-            }
-        });
-        postBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadPostActivity();
             }
         });
         signUpChangeBtn.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
     private void signInUser(){
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
-        final Intent intent = new Intent(this, ProfileActivity.class);
+        final Intent intent = new Intent(this, TabActivity.class);
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -185,7 +170,7 @@ public class LoginActivity extends AppCompatActivity {
     private void createUser() {
         String email = mEmailSignUpField.getText().toString();
         String password = mPasswordSignUpField.getText().toString();
-        final Intent intent = new Intent(this, ProfileActivity.class);
+        final Intent intent = new Intent(this, TabActivity.class);
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -242,16 +227,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-    private void loadMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    private void loadPostActivity(){
-        Intent intent = new Intent(this, PostActivity.class);
-        startActivity(intent);
     }
 
     private void showSignUp(){
