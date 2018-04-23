@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.util.Log;
 import android.util.TypedValue;
@@ -29,12 +31,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Fragment {
     Button fullPostBtn;
-    LinearLayout postlistLayout;
-
+//    LinearLayout postlistLayout;
 
     int postIndex;
+    ArrayList<PostData> posts;
+    PostAdapter adapter;
+    RecyclerView recyclerView;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference postRef = database.getReference("post");
@@ -42,6 +48,8 @@ public class MainActivity extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        initialData();
+
     }
 
     @Override
@@ -51,16 +59,23 @@ public class MainActivity extends Fragment {
 
         postIndex = 0;
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("refer");
-
-        myRef.setValue("Hello, World!");
+//        // Write a message to the database
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("refer");
+//
+//        myRef.setValue("Hello, World!");
 
         fullPostBtn = rootView.findViewById(R.id.full_post_btn);
-        postlistLayout = rootView.findViewById(R.id.postlist_layout);
+//        postlistLayout = rootView.findViewById(R.id.postlist_layout);
 
         setFullPostBtnListener();
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        adapter = new PostAdapter(posts, getContext());
+        recyclerView.setAdapter(adapter);
+
 
         //read from database
 //        postRef.addValueEventListener(new ValueEventListener() {
@@ -90,6 +105,10 @@ public class MainActivity extends Fragment {
             }
         });
     }
+
+    private void initialData() {
+        posts = new ArrayList<>();
+        posts.add(new PostData("123","myName",1,"time","Title", "Content"));}
 
 //    @Override
 //    protected void onActivityResult(int req, int res, Intent intent){
