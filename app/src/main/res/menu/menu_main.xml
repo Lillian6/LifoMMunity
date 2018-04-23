@@ -4,26 +4,32 @@
     <item
         android:id="@+id/share"
         android:icon="@android:drawable/ic_menu_share"
-        android:title="Share"
+        android:title="@string/share"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/email"
         android:icon="@android:drawable/ic_dialog_email"
-        android:title="Email"
+        android:title="@string/send_email"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/Home_action"
-        android:title="Home"
+        android:title="@string/home"
         app:showAsAction="never"
         />
 
     <item
         android:id="@+id/Post_action"
-        android:title="Write Post"
+        android:title="@string/post"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/Text_Size_Bigger"
+        android:title="@string/text_size_bigger"
         app:showAsAction="never"
         />
 

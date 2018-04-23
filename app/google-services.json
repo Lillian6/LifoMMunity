@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "654713013992-e0fhd20hokcinj5lpfmj88m00t6vrdpg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.markzhengma.android.lifommunity",
+            "certificate_hash": "2ef3b2916af88148c00ad33fdd1b9cf3278ad097"
+          }
+        },
+        {
           "client_id": "654713013992-9uacbmm9f4vboai59n8vhcg4pnukdarf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -39,6 +39,12 @@
     <string name="my_posts">My Posts</string>
     <string name="favorites">Favorites</string>
     <string name="log_out">Log Out</string>
+    <string name="write_post">Write Post</string>
+    <string name="share">Share</string>
+    <string name="send_email">Send Email</string>
+    <string name="text_size_bigger">Text Size ++</string>
+    <string name="comment">Comment</string>
+    <string name="like">like</string>
 
     <string-array name="locations_array">
         <item>New York</item>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:minHeight="64dp"
+        android:background="@color/colorYellow">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="8dp"
+                android:background="@color/colorGreen" />
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Name" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:background="@color/colorGreen"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Content from firebase..."
+                android:textColor="@color/postText" />
+
+            <TextView
+                android:id="@+id/post_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Text from firebase..."
+                android:textColor="@color/postText" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/like_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="like" />
+
+                <Button
+                    android:id="@+id/comment_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="comment" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
