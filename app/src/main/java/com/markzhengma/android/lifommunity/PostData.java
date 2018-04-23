@@ -9,6 +9,8 @@ import java.io.Serializable;
 public class PostData implements Serializable {
     public String titleText;
     public String contentText;
+    public String uid;
+    public User user;
 
     public PostData(String titleText, String contentText){
         this.titleText = titleText;
