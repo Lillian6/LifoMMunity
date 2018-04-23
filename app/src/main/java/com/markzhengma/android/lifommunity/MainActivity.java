@@ -3,6 +3,8 @@ package com.markzhengma.android.lifommunity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -15,16 +17,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import android.support.v4.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
-    Button homeBtn;
-    Button postBtn;
-    Button profileBtn;
+public class MainActivity extends Fragment {
+    Button fullPostBtn;
     LinearLayout postlistLayout;
 
 
@@ -34,17 +40,14 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference postRef = database.getReference("post");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    }
 
-        homeBtn = findViewById(R.id.home_btn);
-        postBtn = findViewById(R.id.post_btn);
-        profileBtn = findViewById(R.id.profile_btn);
-        postlistLayout = findViewById(R.id.postlist_layout);
-
-        setPostBtnListener();
-        setProfileBtnListener();
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                Bundle savedInstanceState){
+        View rootView = inflater.inflate(R.layout.activity_main, container, false);
 
         postIndex = 0;
 
@@ -53,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("refer");
 
         myRef.setValue("Hello, World!");
+
+        fullPostBtn = rootView.findViewById(R.id.full_post_btn);
+        postlistLayout = rootView.findViewById(R.id.postlist_layout);
+
+        setFullPostBtnListener();
 
         //read from database
 //        postRef.addValueEventListener(new ValueEventListener() {
@@ -70,112 +78,94 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
+        return rootView;
 
     }
 
-    public void setPostBtnListener() {
-        postBtn.setOnClickListener(new View.OnClickListener(){
+    public void setFullPostBtnListener(){
+        fullPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                loadPostActivity();
+            public void onClick(View view) {
+                openFullPost(view);
             }
         });
     }
 
-    private void loadPostActivity(){
-        Intent intent = new Intent(this, PostActivity.class);
-        startActivityForResult(intent, 111);
-    }
-
-    public void setProfileBtnListener(){
-        profileBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                loadProfileActivity();
-            }
-        });
-    }
-
-    private void loadProfileActivity(){
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    protected void onActivityResult(int req, int res, Intent intent){
-
-        if((req == 111 || req == 222 || req == 333) && res == RESULT_OK){
-            PostData newPost = (PostData)intent.getSerializableExtra("NEW_POST");
-
-            LinearLayout newPostLayout = new LinearLayout(this);
-            LinearLayout.LayoutParams postLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            postLp.setMargins(0,16,0,16);
-            newPostLayout.setMinimumHeight(64);
-            if(postlistLayout != null){
-                postlistLayout.addView(newPostLayout, postLp);
-            }
-
-            LinearLayout newUserInfoLayout = new LinearLayout(this);
-            newUserInfoLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1));
-            newUserInfoLayout.setOrientation(LinearLayout.VERTICAL);
-            newPostLayout.addView(newUserInfoLayout);
-
-            ImageView newUserImage = new ImageView(this);
-            LinearLayout.LayoutParams userImageLp = new LinearLayout.LayoutParams(80, 80);
-            userImageLp.setMargins(16,16,16,16);
-            newUserImage.setBackgroundColor(Color.BLUE);
-            newUserInfoLayout.addView(newUserImage, userImageLp);
-
-            TextView newUsernameTextView = new TextView(this);
-            newUsernameTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            newUsernameTextView.setText("My Name");
-            newUsernameTextView.setTypeface(Typeface.DEFAULT_BOLD);
-            newUserInfoLayout.addView(newUsernameTextView);
-
-            LinearLayout newContentLayout = new LinearLayout(this);
-            newContentLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 4));
-            newContentLayout.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-            newContentLayout.setOrientation(LinearLayout.VERTICAL);
-            newPostLayout.addView(newContentLayout);
-
-            TextView newTitleTextView = new TextView(this);
-            newTitleTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            newTitleTextView.setPadding(16, 16, 16, 16);
-            newTitleTextView.setText(newPost.titleText);
-            newTitleTextView.setTypeface(Typeface.DEFAULT_BOLD);
-            newTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,32);
-            newTitleTextView.setTextColor(getResources().getColor(R.color.postText));
-            newContentLayout.addView(newTitleTextView);
-
-            TextView newContentTextView = new TextView(this);
-            newContentTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            newContentTextView.setPadding(16, 16, 16, 16);
-            newContentTextView.setText(newPost.contentText);
-            newContentTextView.setTextColor(getResources().getColor(R.color.postText));
-//            newPostTextView.setId(postIndex);
+//    @Override
+//    protected void onActivityResult(int req, int res, Intent intent){
 //
-//            postIndex ++;
-            newContentLayout.addView(newContentTextView);
-
-            LinearLayout buttonGroupLayout = new LinearLayout(this);
-            buttonGroupLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            newContentLayout.addView(buttonGroupLayout);
-
-            Button likeButton = new Button(this);
-            likeButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            likeButton.setText("like");
-            buttonGroupLayout.addView(likeButton);
-
-            Button commentButton = new Button(this);
-            commentButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            commentButton.setText("comment");
-            buttonGroupLayout.addView(commentButton);
-
-        }
-    }
+//        if((req == 111 || req == 222 || req == 333) && res == RESULT_OK){
+//            PostData newPost = (PostData)intent.getSerializableExtra("NEW_POST");
+//
+//            LinearLayout newPostLayout = new LinearLayout(this);
+//            LinearLayout.LayoutParams postLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//            postLp.setMargins(0,16,0,16);
+//            newPostLayout.setMinimumHeight(64);
+//            if(postlistLayout != null){
+//                postlistLayout.addView(newPostLayout, postLp);
+//            }
+//
+//            LinearLayout newUserInfoLayout = new LinearLayout(this);
+//            newUserInfoLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1));
+//            newUserInfoLayout.setOrientation(LinearLayout.VERTICAL);
+//            newPostLayout.addView(newUserInfoLayout);
+//
+//            ImageView newUserImage = new ImageView(this);
+//            LinearLayout.LayoutParams userImageLp = new LinearLayout.LayoutParams(80, 80);
+//            userImageLp.setMargins(16,16,16,16);
+//            newUserImage.setBackgroundColor(Color.BLUE);
+//            newUserInfoLayout.addView(newUserImage, userImageLp);
+//
+//            TextView newUsernameTextView = new TextView(this);
+//            newUsernameTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//            newUsernameTextView.setText("My Name");
+//            newUsernameTextView.setTypeface(Typeface.DEFAULT_BOLD);
+//            newUserInfoLayout.addView(newUsernameTextView);
+//
+//            LinearLayout newContentLayout = new LinearLayout(this);
+//            newContentLayout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 4));
+//            newContentLayout.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+//            newContentLayout.setOrientation(LinearLayout.VERTICAL);
+//            newPostLayout.addView(newContentLayout);
+//
+//            TextView newTitleTextView = new TextView(this);
+//            newTitleTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//            newTitleTextView.setPadding(16, 16, 16, 16);
+//            newTitleTextView.setText(newPost.titleText);
+//            newTitleTextView.setTypeface(Typeface.DEFAULT_BOLD);
+//            newTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,32);
+//            newTitleTextView.setTextColor(getResources().getColor(R.color.postText));
+//            newContentLayout.addView(newTitleTextView);
+//
+//            TextView newContentTextView = new TextView(this);
+//            newContentTextView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//            newContentTextView.setPadding(16, 16, 16, 16);
+//            newContentTextView.setText(newPost.contentText);
+//            newContentTextView.setTextColor(getResources().getColor(R.color.postText));
+////            newPostTextView.setId(postIndex);
+////
+////            postIndex ++;
+//            newContentLayout.addView(newContentTextView);
+//
+//            LinearLayout buttonGroupLayout = new LinearLayout(this);
+//            buttonGroupLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//            newContentLayout.addView(buttonGroupLayout);
+//
+//            Button likeButton = new Button(this);
+//            likeButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//            likeButton.setText("like");
+//            buttonGroupLayout.addView(likeButton);
+//
+//            Button commentButton = new Button(this);
+//            commentButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//            commentButton.setText("comment");
+//            buttonGroupLayout.addView(commentButton);
+//
+//        }
+//    }
 
     public void openFullPost(View view) {
-        Intent intent = new Intent(this, FullPostActivity.class);
+        Intent intent = new Intent(getActivity(), FullPostActivity.class);//changed "this" to "getActivity()" in order to be compatible with Fragment
         startActivity(intent);
     }
 }
