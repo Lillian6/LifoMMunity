@@ -48,7 +48,7 @@ public class MainActivity extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initialData();
+//        initialData();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class MainActivity extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_main, container, false);
 
-        initialData();
+//        initialData();
 //        postIndex = 0;
 
         fullPostBtn = rootView.findViewById(R.id.full_post_btn);
@@ -127,11 +127,15 @@ public class MainActivity extends Fragment {
         });
     }
 
-    private void initialData() {
-        posts = new ArrayList<>();
-        posts.add(new PostData("123","myName",1,"time","12", "23"));
-        posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
-    }
+//    private void initialData() {
+//        posts = new ArrayList<>();
+//        posts.add(new PostData("123","myName",1,"time","12", "23"));
+//        posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
+//        posts.add(new PostData("123","myName",1,"time","12", "23"));
+//        posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
+//        posts.add(new PostData("123","myName",1,"time","12", "23"));
+//        posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
+//    }
 
 //    @Override
 //    protected void onActivityResult(int req, int res, Intent intent){

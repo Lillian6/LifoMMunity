@@ -39,6 +39,9 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.FileNotFoundException;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class PostActivity extends Fragment {
     private Button submitPostBtn;
     private Button addImageBtn;
@@ -120,9 +123,11 @@ public class PostActivity extends Fragment {
         submitPostBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                FirebaseUser user = mAuth.getCurrentUser();
+                Date currentTime = Calendar.getInstance().getTime();
                 getPostData();
-                DatabaseReference userPostRef = postRef.child(titleText);
-                userPostRef.setValue(contentText);
+                Log.v(currentTime.toString(), "%%%%%%%%%%%%");
+                postRef.child(titleText).setValue(new PostData(user.getUid().toString(), "username", 123, currentTime, titleText, contentText));
             }
         });
     }

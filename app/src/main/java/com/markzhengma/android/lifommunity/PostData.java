@@ -1,6 +1,7 @@
 package com.markzhengma.android.lifommunity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by markzhengma on 3/19/18.
@@ -10,13 +11,13 @@ public class PostData implements Serializable {
     public String userId;
     public String userName;
     public int imageId;
-    public String time;
+    public Date time;
     public String titleText;
     public String contentText;
     public String uid;
     public User user;
 
-    public PostData(String userId, String userName, int imageId, String time, String titleText, String contentText) {
+    public PostData(String userId, String userName, int imageId, Date time, String titleText, String contentText) {
         this.userId = userId;
         this.userName = userName;
         this.imageId = imageId;
@@ -52,11 +53,11 @@ public class PostData implements Serializable {
         this.imageId = imageId;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
