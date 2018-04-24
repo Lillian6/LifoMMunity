@@ -37,7 +37,7 @@ public class MainActivity extends Fragment {
     Button fullPostBtn;
 //    LinearLayout postlistLayout;
 
-    int postIndex;
+//    int postIndex;
     ArrayList<PostData> posts;
     PostAdapter adapter;
     RecyclerView recyclerView;
