@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.util.Log;
 import android.util.TypedValue;
@@ -29,58 +31,92 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Fragment {
     Button fullPostBtn;
-    LinearLayout postlistLayout;
+//    LinearLayout postlistLayout;
 
-
-    int postIndex;
+//    int postIndex;
+    ArrayList<PostData> posts;
+    PostAdapter adapter;
+    RecyclerView recyclerView;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference postRef = database.getReference("post");
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initialData();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                Bundle savedInstanceState){
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_main, container, false);
 
-        postIndex = 0;
-
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("refer");
-
-        myRef.setValue("Hello, World!");
+        initialData();
+//        postIndex = 0;
 
         fullPostBtn = rootView.findViewById(R.id.full_post_btn);
-        postlistLayout = rootView.findViewById(R.id.postlist_layout);
+//        postlistLayout = rootView.findViewById(R.id.postlist_layout);
 
         setFullPostBtnListener();
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //read from database
+        adapter = new PostAdapter(posts, getContext());
+        recyclerView.setAdapter(adapter);
+
+        return rootView;
+    }
+
+
 //        postRef.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(DataSnapshot dataSnapshot) {
 //                // This method is called once with the initial value and again
 //                // whenever data at this location is updated.
 //                String value = dataSnapshot.getValue(String.class);
+//                posts = new ArrayList<PostData>();
+//                posts.add(new PostData("123","myName",1,"time","Title", "Content"));
+//                posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
+//                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
 //
+//                   PostData value = dataSnapshot1.getValue(PostData.class);
+//
+//                    PostData post = new PostData();
+//                    String name = post.getUserName();
+//                    String userId= post.getUserId();
+//                    int imageId = post.getImageId();
+//                    String time = post.getTime();
+//                    String title = post.getTitleText();
+//                    String content = post.getContentText();
+//                    post.setUserName(name);
+//                    post.setUserId(userId);
+//                    post.setImageId(imageId);
+//                    post.setTime(time);
+//                    post.setTitleText(title);
+//                    post.setContentText(content);
+//                    posts.add(post);
+//
+//                }
 //            }
 //
 //            @Override
 //            public void onCancelled(DatabaseError error) {
 //                // Failed to read value
+//                Log.w("Hello", "Failed to read value", error.toException());
 //
 //            }
 //        });
-        return rootView;
+//        return rootView;
+//
+//
+//    }
 
-    }
 
     public void setFullPostBtnListener(){
         fullPostBtn.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +125,12 @@ public class MainActivity extends Fragment {
                 openFullPost(view);
             }
         });
+    }
+
+    private void initialData() {
+        posts = new ArrayList<>();
+        posts.add(new PostData("123","myName",1,"time","12", "23"));
+        posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
     }
 
 //    @Override
