@@ -22,12 +22,6 @@
         />
 
     <item
-        android:id="@+id/Post_action"
-        android:title="@string/post"
-        app:showAsAction="never"
-        />
-
-    <item
         android:id="@+id/Text_Size_Bigger"
         android:title="@string/text_size_bigger"
         app:showAsAction="never"

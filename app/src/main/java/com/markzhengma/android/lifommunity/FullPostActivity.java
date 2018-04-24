@@ -28,7 +28,7 @@ public class FullPostActivity extends AppCompatActivity {
         textDisplay = (TextView)findViewById(R.id.full_post_content);
 
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Post");
+        myRef = database.getReference("post");
 
     }
 
@@ -61,12 +61,8 @@ public class FullPostActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.Home_action:
-                Intent homeIntent = new Intent(this, MainActivity.class);
+                Intent homeIntent = new Intent(this, TabActivity.class);
                 startActivity(homeIntent);
-                return true;
-            case R.id.Post_action:
-                Intent postIntent = new Intent(this, PostActivity.class);
-                startActivity(postIntent);
                 return true;
             case R.id.Text_Size_Bigger:
                 textSize ++;
