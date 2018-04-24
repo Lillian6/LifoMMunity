@@ -37,23 +37,32 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         commentBtn = (Button) itemView.findViewById(R.id.comment_btn);
 
         this.context = context;
-    }
-
-    public void bind(final PostData post) {
-        nameView.setText(post.userName);
-        postTitleView.setText(post.titleText);
-        postContentView.setText(post.contentText);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, post.getTitleText(), Toast.LENGTH_SHORT).show();
+               Toast.makeText(context, postTitleView.getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(v.getContext(), FullPostActivity.class);
                 context.startActivity(intent);
             }
         });
-
     }
+
+//    public void bind(final PostData post) {
+//        nameView.setText(post.userName);
+//        postTitleView.setText(post.titleText);
+//        postContentView.setText(post.contentText);
+//
+//        cardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(context, post.getTitleText(), Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(v.getContext(), FullPostActivity.class);
+//                context.startActivity(intent);
+//            }
+//        });
+//
+//    }
 
     public CardView getCardView() {
         return cardView;

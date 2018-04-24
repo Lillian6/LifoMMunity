@@ -32,38 +32,29 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     @Override
     public void onBindViewHolder(PostViewHolder holder, int position) {
         PostData post = posts.get(position);
-        holder.bind(post);
-
+//        holder.bind(post);
+        holder.getPostContentView().setText(post.getContentText());
+        holder.getPostTitleView().setText(post.getTitleText());
     }
 
     @Override
     public int getItemCount() {
-        return posts.size();
+        int arr = 0;
+        try{
+            if(posts.size()==0){
+                arr = 0;
+            }else{
+                arr=posts.size();
+            }
+
+        }catch (Exception e){
+
+        }
+
+        return arr;
     }
 
 
 }
-//
-//    public PostAdapter(Query ref) {
-//        super(PostData.class, R.layout.card_view_post, PostViewHolder.class, ref);
-//    }
-//
-//    @Override
-//    protected void populateViewHolder(PostViewHolder viewHolder, PostData post, int position) {
-//        viewHolder.bind(post);
-//    }
-//
-//    @Override
-//    protected void onBindViewHolder(@NonNull PostViewHolder holder, int position, @NonNull PostData model) {
-//
-//    }
-//
-//    @NonNull
-//    @Override
-//    public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        return null;
-//    }
-//}
-
 
 

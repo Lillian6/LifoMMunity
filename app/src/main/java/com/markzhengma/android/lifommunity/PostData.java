@@ -23,6 +23,9 @@ public class PostData implements Serializable {
         this.contentText = contentText;
     }
 
+    public PostData() {
+    }
+
     public String getUserId() {
         return userId;
     }
