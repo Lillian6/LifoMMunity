@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/share"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="@string/share"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/email"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="@string/send_email"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/Home_action"
+        android:title="@string/home"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/Text_Size_Bigger"
+        android:title="@string/text_size_bigger"
+        app:showAsAction="never"
+        />
 
 </menu>

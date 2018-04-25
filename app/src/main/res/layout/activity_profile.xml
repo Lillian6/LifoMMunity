@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/section_label"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,8 +10,7 @@
     tools:context="com.markzhengma.android.lifommunity.ProfileActivity">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,32 +112,5 @@
 
         </LinearLayout>
     </ScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <Button
-            android:id="@+id/home_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@color/btnBg"
-            android:layout_weight="1"
-            android:text="@string/home"/>
-        <Button
-            android:id="@+id/post_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@color/btnBg"
-            android:layout_weight="1"
-            android:text="@string/post"/>
-        <Button
-            android:id="@+id/profile_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@color/colorGreen"
-            android:textColor="@color/postText"
-            android:layout_weight="1"
-            android:text="@string/profile"/>
-    </LinearLayout>
 
 </LinearLayout>
