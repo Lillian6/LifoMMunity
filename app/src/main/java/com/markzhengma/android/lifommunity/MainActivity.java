@@ -45,10 +45,36 @@ public class MainActivity extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference postRef = database.getReference("post");
 
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+////        initialData();
+//    }
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        initialData();
+        posts = new ArrayList<>();
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    posts.add(new PostData(
+                            child.child("userId").getValue().toString(),
+                            child.child("userName").getValue().toString(),
+                            child.child("imageId").getValue().toString(),
+                            child.child("time").getValue().toString(),
+                            child.child("titleText").getValue().toString(),
+                            child.child("contentText").getValue().toString()
+                    ));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
