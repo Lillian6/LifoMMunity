@@ -14,8 +14,6 @@ public class PostData implements Serializable {
     public String time;
     public String titleText;
     public String contentText;
-    public String uid;
-    public User user;
 
     public PostData(String userId, String userName, String imageId, String time, String titleText, String contentText) {
         this.userId = userId;

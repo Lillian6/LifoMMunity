@@ -62,8 +62,8 @@ public class PostActivity extends Fragment {
     private static final int RC_PHOTO_PICKER = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
     private ImageView imageView;
-    private StorageReference mStorage;
-    private ProgressDialog mProgress;
+//    private StorageReference mStorage;
+//    private ProgressDialog mProgress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
