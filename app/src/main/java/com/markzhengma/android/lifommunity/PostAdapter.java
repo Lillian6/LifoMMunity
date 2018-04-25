@@ -33,8 +33,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     public void onBindViewHolder(PostViewHolder holder, int position) {
         PostData post = posts.get(position);
 //        holder.bind(post);
-        holder.getPostContentView().setText(post.getContentText());
-        holder.getPostTitleView().setText(post.getTitleText());
+        holder.getPostContentView().setText(post.contentText);
+        holder.getPostTitleView().setText(post.titleText);
     }
 
     @Override

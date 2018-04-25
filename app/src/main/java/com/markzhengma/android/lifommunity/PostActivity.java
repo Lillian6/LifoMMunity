@@ -127,7 +127,7 @@ public class PostActivity extends Fragment {
                 Date currentTime = Calendar.getInstance().getTime();
                 getPostData();
                 Log.v(currentTime.toString(), "%%%%%%%%%%%%");
-                postRef.child(titleText).setValue(new PostData(user.getUid().toString(), "username", 123, currentTime, titleText, contentText));
+                postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), "userName", "imageId", currentTime.toString(), titleText, contentText));
             }
         });
     }

@@ -10,14 +10,14 @@ import java.util.Date;
 public class PostData implements Serializable {
     public String userId;
     public String userName;
-    public int imageId;
-    public Date time;
+    public String imageId;
+    public String time;
     public String titleText;
     public String contentText;
     public String uid;
     public User user;
 
-    public PostData(String userId, String userName, int imageId, Date time, String titleText, String contentText) {
+    public PostData(String userId, String userName, String imageId, String time, String titleText, String contentText) {
         this.userId = userId;
         this.userName = userName;
         this.imageId = imageId;
@@ -45,19 +45,19 @@ public class PostData implements Serializable {
         this.userName = userName;
     }
 
-    public int getImageId() {
+    public String getImageId() {
         return imageId;
     }
 
-    public void setImageId(int imageId) {
+    public void setImageId(String imageId) {
         this.imageId = imageId;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

@@ -52,6 +52,32 @@ public class MainActivity extends Fragment {
     }
 
     @Override
+    public void onStart(){
+        super.onStart();
+        posts = new ArrayList<>();
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    posts.add(new PostData(
+                            child.child("userId").getValue().toString(),
+                            child.child("userName").getValue().toString(),
+                            child.child("imageId").getValue().toString(),
+                            child.child("time").getValue().toString(),
+                            child.child("titleText").getValue().toString(),
+                            child.child("contentText").getValue().toString()
+                    ));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_main, container, false);
@@ -71,6 +97,33 @@ public class MainActivity extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        posts = new ArrayList<>();
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    posts.add(new PostData(
+                            child.child("userId").getValue().toString(),
+                            child.child("userName").getValue().toString(),
+                            child.child("imageId").getValue().toString(),
+                            child.child("time").getValue().toString(),
+                            child.child("titleText").getValue().toString(),
+                            child.child("contentText").getValue().toString()
+                    ));
+                    Log.v(child.child("titleText").getValue().toString(), "####################");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
