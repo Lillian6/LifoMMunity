@@ -45,10 +45,62 @@ public class MainActivity extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference postRef = database.getReference("post");
 
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+////        initialData();
+//    }
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initialData();
+        posts = new ArrayList<>();
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    posts.add(new PostData(
+                            child.child("userId").getValue().toString(),
+                            child.child("userName").getValue().toString(),
+                            child.child("imageId").getValue().toString(),
+                            child.child("time").getValue().toString(),
+                            child.child("titleText").getValue().toString(),
+                            child.child("contentText").getValue().toString()
+                    ));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        posts = new ArrayList<>();
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    posts.add(new PostData(
+                            child.child("userId").getValue().toString(),
+                            child.child("userName").getValue().toString(),
+                            child.child("imageId").getValue().toString(),
+                            child.child("time").getValue().toString(),
+                            child.child("titleText").getValue().toString(),
+                            child.child("contentText").getValue().toString()
+                    ));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -56,7 +108,7 @@ public class MainActivity extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_main, container, false);
 
-        initialData();
+//        initialData();
 //        postIndex = 0;
 
         fullPostBtn = rootView.findViewById(R.id.full_post_btn);
@@ -71,6 +123,33 @@ public class MainActivity extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        posts = new ArrayList<>();
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    posts.add(new PostData(
+                            child.child("userId").getValue().toString(),
+                            child.child("userName").getValue().toString(),
+                            child.child("imageId").getValue().toString(),
+                            child.child("time").getValue().toString(),
+                            child.child("titleText").getValue().toString(),
+                            child.child("contentText").getValue().toString()
+                    ));
+                    Log.v(child.child("titleText").getValue().toString(), "####################");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
@@ -127,11 +206,15 @@ public class MainActivity extends Fragment {
         });
     }
 
-    private void initialData() {
-        posts = new ArrayList<>();
-        posts.add(new PostData("123","myName",1,"time","12", "23"));
-        posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
-    }
+//    private void initialData() {
+//        posts = new ArrayList<>();
+//        posts.add(new PostData("123","myName",1,"time","12", "23"));
+//        posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
+//        posts.add(new PostData("123","myName",1,"time","12", "23"));
+//        posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
+//        posts.add(new PostData("123","myName",1,"time","12", "23"));
+//        posts.add(new PostData("123","myName",1,"time","aaa", "bbb"));
+//    }
 
 //    @Override
 //    protected void onActivityResult(int req, int res, Intent intent){
