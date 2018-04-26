@@ -169,7 +169,7 @@ public class PostActivity extends Fragment {
                 imageView.setImageBitmap(thumbnail);
                 picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
             } catch (Exception e) {
-                Toast.makeText(this, "Error decoding photo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Error decoding photo", Toast.LENGTH_SHORT).show();
             }
         }
 
