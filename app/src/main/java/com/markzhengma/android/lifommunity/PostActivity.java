@@ -162,24 +162,21 @@ public class PostActivity extends Fragment {
             try {
                 decodeUri(photoUri);
                 picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
+                Toast.makeText(getActivity(), "Upload successfully", Toast.LENGTH_SHORT).show();
             } catch (FileNotFoundException e) {
-                Toast.makeText(getActivity(), "Error decoding photo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Error uploading photo", Toast.LENGTH_SHORT).show();
             }
         }else if(requestCode == REQUEST_IMAGE_CAPTURE){
             try {
                 Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
                 imageView.setImageBitmap(thumbnail);
                 picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
+                Toast.makeText(getActivity(), "Upload successfully", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
-                Toast.makeText(getActivity(), "Error decoding photo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Error uploading photo", Toast.LENGTH_SHORT).show();
             }
         }
 
-        if (requestCode == REQUEST_IMAGE_CAPTURE){
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(photo);
-            picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
-        }
 //            mProgress.setMessage("uploading image...");
 //            mProgress.show();
 //            Uri cameraUri = data.getData();
