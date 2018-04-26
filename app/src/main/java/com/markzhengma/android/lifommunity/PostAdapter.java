@@ -35,6 +35,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
 //        holder.bind(post);
         holder.getPostContentView().setText(post.contentText);
         holder.getPostTitleView().setText(post.titleText);
+        holder.setPostImage(post.getImageId());
     }
 
     @Override
