@@ -158,7 +158,7 @@ public class PostActivity extends Fragment {
         if (resultCode != Activity.RESULT_OK) return;
 
         if (requestCode == RC_PHOTO_PICKER) {
-            Uri photoUri = data.getData();
+            Uri photoUri = data.getData();//Uri can store the value and path of the image and we can get the path from data
             try {
                 decodeUri(photoUri);
                 picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
