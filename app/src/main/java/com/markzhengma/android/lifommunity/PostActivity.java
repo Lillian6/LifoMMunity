@@ -178,7 +178,7 @@ public class PostActivity extends Fragment {
         if (requestCode == REQUEST_IMAGE_CAPTURE){
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(photo);
-            postRef.child(picRef.toString()).setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
+            picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
         }
 //            mProgress.setMessage("uploading image...");
 //            mProgress.show();
