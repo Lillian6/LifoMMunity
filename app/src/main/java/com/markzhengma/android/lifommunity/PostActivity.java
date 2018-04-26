@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -39,8 +40,10 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.FileNotFoundException;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class PostActivity extends Fragment {
     private Button submitPostBtn;
@@ -158,8 +161,16 @@ public class PostActivity extends Fragment {
             Uri photoUri = data.getData();
             try {
                 decodeUri(photoUri);
-                picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
+                picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
             } catch (FileNotFoundException e) {
+                Toast.makeText(getActivity(), "Error decoding photo", Toast.LENGTH_SHORT).show();
+            }
+        }else if(requestCode == REQUEST_IMAGE_CAPTURE){
+            try {
+                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(thumbnail);
+                picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
+            } catch (Exception e) {
                 Toast.makeText(getActivity(), "Error decoding photo", Toast.LENGTH_SHORT).show();
             }
         }
@@ -167,7 +178,7 @@ public class PostActivity extends Fragment {
         if (requestCode == REQUEST_IMAGE_CAPTURE){
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(photo);
-            picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
+            postRef.child(picRef.toString()).setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
         }
 //            mProgress.setMessage("uploading image...");
 //            mProgress.show();
@@ -230,5 +241,4 @@ public class PostActivity extends Fragment {
             }
         });
     }
-
 }
