@@ -96,16 +96,16 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         return postTitleView;
     }
 
-    public void setPostTitleView(TextView postTitleView) {
-        this.postTitleView = postTitleView;
+    public void setPostTitleView(String title) {
+        postTitleView.setText(title);
     }
 
     public TextView getPostContentView() {
         return postContentView;
     }
 
-    public void setPostContentView(TextView postContentView) {
-        this.postContentView = postContentView;
+    public void setPostContentView(String content) {
+        postContentView.setText(content);
     }
 
     public Button getLikeBtn() {

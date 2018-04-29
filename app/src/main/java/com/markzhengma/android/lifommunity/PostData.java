@@ -1,5 +1,7 @@
 package com.markzhengma.android.lifommunity;
 
+import android.net.Uri;
+
 import java.io.Serializable;
 import java.util.Date;
 
