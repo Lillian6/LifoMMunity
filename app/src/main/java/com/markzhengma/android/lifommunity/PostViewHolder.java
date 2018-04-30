@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * Created by Jieqiong on 15/04/2018.
  */
@@ -17,19 +19,21 @@ import android.widget.Toast;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
     private CardView cardView;
-    private ImageView imageView;
+    private ImageView userImageView;
     private TextView nameView;
     private TextView postTitleView;
     private TextView postContentView;
     private Button likeBtn;
     private Button commentBtn;
+    private ImageView postImageView;
 
     private Context context;
 
     public PostViewHolder(View itemView, final Context context) {
         super(itemView);
         cardView = (CardView) itemView.findViewById(R.id.card_view);
-        imageView = (ImageView) itemView.findViewById(R.id.profile_image);
+        userImageView = (ImageView) itemView.findViewById(R.id.profile_image);
+        postImageView = (ImageView) itemView.findViewById(R.id.main_image_view);
         nameView = (TextView) itemView.findViewById(R.id.profile_name);
         postTitleView = (TextView) itemView.findViewById(R.id.post_title);
         postContentView = (TextView) itemView.findViewById(R.id.post_content);
@@ -73,11 +77,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     }
 
     public ImageView getImageView() {
-        return imageView;
+        return userImageView;
     }
 
     public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
+        this.userImageView = imageView;
     }
 
     public TextView getNameView() {
@@ -92,16 +96,16 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         return postTitleView;
     }
 
-    public void setPostTitleView(TextView postTitleView) {
-        this.postTitleView = postTitleView;
+    public void setPostTitleView(String title) {
+        postTitleView.setText(title);
     }
 
     public TextView getPostContentView() {
         return postContentView;
     }
 
-    public void setPostContentView(TextView postContentView) {
-        this.postContentView = postContentView;
+    public void setPostContentView(String content) {
+        postContentView.setText(content);
     }
 
     public Button getLikeBtn() {
@@ -120,5 +124,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         this.commentBtn = commentBtn;
     }
 
+    public void setPostImage(String imageId) {
+        Picasso.get().load(imageId).into(postImageView);
+    }
 }
 
