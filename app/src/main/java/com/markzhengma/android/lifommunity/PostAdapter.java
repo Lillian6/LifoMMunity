@@ -6,11 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +31,42 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
         this.context = context;
     }
 
+    public PostAdapter(DatabaseReference thePosts, final Context context) {
+        this.context = context;
+        posts = new ArrayList<>();
+        thePosts.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                PostData theData = dataSnapshot.getValue(PostData.class);
+                posts.add(theData);
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                notifyDataSetChanged();
+            }
+        });
+    }
+
     public PostAdapter() {
     }
+
     @Override
     public PostViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_post, parent, false);
@@ -79,9 +113,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
                     arr = posts.size();
                 }
 
+
             } catch (Exception e) {
 
             }
+
+    @Override
+    public int getItemCount() {
+        int arr = 0;
+        try {
+            if (posts.size() == 0) {
+                arr = 0;
+            } else {
+                arr = posts.size();
+            }
+
+        } catch (Exception e) {
+
 
             return arr;
         }

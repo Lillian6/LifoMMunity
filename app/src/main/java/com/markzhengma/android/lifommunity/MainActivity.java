@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class MainActivity extends Fragment {
     Button fullPostBtn;
@@ -46,12 +47,6 @@ public class MainActivity extends Fragment {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference postRef = database.getReference("post");
-
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-////        initialData();
-//    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,37 +117,10 @@ public class MainActivity extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        adapter = new PostAdapter(posts, getContext());
+        adapter = new PostAdapter(postRef, getContext());
         recyclerView.setAdapter(adapter);
 
         return rootView;
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        posts = new ArrayList<>();
-        postRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot child : dataSnapshot.getChildren()){
-                    posts.add(new PostData(
-                            child.child("userId").getValue().toString(),
-                            child.child("userName").getValue().toString(),
-                            child.child("imageId").getValue().toString(),
-                            child.child("time").getValue().toString(),
-                            child.child("titleText").getValue().toString(),
-                            child.child("contentText").getValue().toString()
-                    ));
-                    Log.v(child.child("titleText").getValue().toString(), "####################");
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
 //    public void setFullPostBtnListener(){
@@ -168,8 +136,6 @@ public class MainActivity extends Fragment {
         startActivity(intent);
     }
 }
-
-
 
 //        postRef.addValueEventListener(new ValueEventListener() {
 //            @Override
