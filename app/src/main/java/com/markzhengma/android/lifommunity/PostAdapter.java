@@ -103,7 +103,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
         holder.getPostTitleView().setText(post.titleText);
     }
 
-
     @Override
     public int getItemCount() {
         int arr = 0;
@@ -113,17 +112,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
             } else {
                 arr = posts.size();
             }
-
         } catch (Exception e) {
 
         }
-
-
             return arr;
         }
-
-
-
 }
-
-
