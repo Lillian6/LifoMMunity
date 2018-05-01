@@ -33,8 +33,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -64,10 +67,12 @@ public class PostActivity extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference postRef;
     private DatabaseReference picRef;
+    private DatabaseReference userRef;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
     private ProgressDialog progressDialog;
+    private String username;
 
     private static final int RC_PHOTO_PICKER = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
@@ -85,6 +90,7 @@ public class PostActivity extends Fragment {
         database = FirebaseDatabase.getInstance();
         postRef = database.getReference("post");
         picRef = database.getReference("pic");
+        userRef = database.getReference("users");
         user = mAuth.getCurrentUser();
         mStorage = FirebaseStorage.getInstance().getReference();
         progressDialog = new ProgressDialog(getActivity());
@@ -106,14 +112,28 @@ public class PostActivity extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if(user != null){
+            DatabaseReference childRef = userRef.child(user.getUid().toString());
+            childRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    username = dataSnapshot.child("username").getValue().toString();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), "Error loading Firebase", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
-                if (user == null)
+                if (user == null) {
                     Log.v("NOT LOGGED IN", "**************************************");
-                startActivity(intent);
+                    startActivity(intent);
+                }
             }
         };
     }
@@ -140,8 +160,7 @@ public class PostActivity extends Fragment {
                 if(user != null) {
                     Date currentTime = Calendar.getInstance().getTime();
                     getPostData();
-                    Log.v(currentTime.toString(), "%%%%%%%%%%%%");
-                    postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), user.getDisplayName(), mStorage.getDownloadUrl().toString(), currentTime.toString(), titleText, contentText));
+                    postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), username, mStorage.getDownloadUrl().toString(), currentTime.toString(), titleText, contentText));
 
                     //                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
                     //                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -153,6 +172,7 @@ public class PostActivity extends Fragment {
                     //                });
                     Intent intent = new Intent(getActivity(), TabActivity.class);
                     startActivity(intent);
+                    Log.v(username, currentTime.toString());
                 }else{
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
