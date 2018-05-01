@@ -157,17 +157,29 @@ public class PostActivity extends Fragment {
         submitPostBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                FirebaseUser user = mAuth.getCurrentUser();
+                final FirebaseUser user = mAuth.getCurrentUser();
+                final Date currentTime = Calendar.getInstance().getTime();
                 if(user != null) {
-                    Date currentTime = Calendar.getInstance().getTime();
-//                    String dateString = currentTime.toString();
-//                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
                     try {
-//                        Date date = format.parse(dateString);
-                        SimpleDateFormat dateString = new SimpleDateFormat("MMM d, yyyy HH:mm:ss");
+                        final SimpleDateFormat dateString = new SimpleDateFormat("MMM d, yyyy HH:mm:ss");
                         System.out.println(dateString.format(currentTime));
+                        progressDialog.setMessage("Uploading...");
+                        progressDialog.show();
                         getPostData();
-                        postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), username, mStorage.getDownloadUrl().toString(), dateString.format(currentTime), titleText, contentText));
+                        if(uri != null) {
+                            StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
+                            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                                    postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), username, downloadUri.toString(), dateString.format(currentTime), titleText, contentText));
+                                    Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+                            });
+                        }else{
+                            postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), username, null, dateString.format(currentTime), titleText, contentText));
+                        }
 
                         //                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
                         //                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -218,20 +230,11 @@ public class PostActivity extends Fragment {
 
         if (requestCode == RC_PHOTO_PICKER) {
             try {
-                progressDialog.setMessage("Uploading...");
-                progressDialog.show();
+                //final Date currentTime = Calendar.getInstance().getTime();
                 decodeUri(uri);
                 picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
                 Toast.makeText(getActivity(), "Upload successfully", Toast.LENGTH_SHORT).show();
-                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
-                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Uri downloadUri = taskSnapshot.getDownloadUrl();
-                        Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
-                });
+
             } catch (FileNotFoundException e) {
                 Toast.makeText(getActivity(), "Error uploading photo", Toast.LENGTH_SHORT).show();
             }
