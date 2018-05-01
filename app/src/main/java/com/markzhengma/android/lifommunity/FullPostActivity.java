@@ -35,7 +35,7 @@ public class FullPostActivity extends AppCompatActivity {
     private TextView titleDisplay;
     private TextView contentDisplay;
     private float textSize = 25;
-=======
+
    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class FullPostActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("post");
-        mStorage = FirebaseStorage.getInstance().getReference();
+//        mStorage = FirebaseStorage.getInstance().getReference();
 
 //        Picasso.get()
 //                    .load("https://firebasestorage.googleapis.com/v0/b/lifommunity-d553e.appspot.com/o/Post%20Image%2Fimage%3A50%2FPost%20Image%2Fimage%3A50?alt=media&token=7d20acb9-201d-4c0b-8bf7-f56f2b6a6799")
@@ -68,15 +68,13 @@ public class FullPostActivity extends AppCompatActivity {
 //            }
 //        });
 
-   }
-
-
         Intent intent = getIntent();
         PostData post = (PostData) intent.getSerializableExtra(Keys.POST_KEY);
         titleDisplay.setText(post.getTitleText());
         contentDisplay.setText(post.getContentText());
 
     }
+
 
     //inflates the xml file
     @Override
