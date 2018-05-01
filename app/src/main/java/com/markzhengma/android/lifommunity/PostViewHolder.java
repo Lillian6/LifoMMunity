@@ -25,7 +25,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     private TextView postContentView;
     private Button likeBtn;
     private Button commentBtn;
-    private ImageView postImageView;
 
     private Context context;
 
@@ -33,7 +32,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         cardView = (CardView) itemView.findViewById(R.id.card_view);
         userImageView = (ImageView) itemView.findViewById(R.id.profile_image);
-        postImageView = (ImageView) itemView.findViewById(R.id.main_image_view);
         nameView = (TextView) itemView.findViewById(R.id.profile_name);
         postTitleView = (TextView) itemView.findViewById(R.id.post_title);
         postContentView = (TextView) itemView.findViewById(R.id.post_content);
@@ -124,8 +122,5 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         this.commentBtn = commentBtn;
     }
 
-    public void setPostImage(String imageId) {
-        Picasso.get().load(imageId).into(postImageView);
-    }
 }
 

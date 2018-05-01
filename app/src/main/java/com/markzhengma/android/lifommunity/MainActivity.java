@@ -41,6 +41,8 @@ public class MainActivity extends Fragment {
     ArrayList<PostData> posts;
     PostAdapter adapter;
     RecyclerView recyclerView;
+    ImageView imageView;
+
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference postRef = database.getReference("post");
@@ -54,6 +56,7 @@ public class MainActivity extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         posts = new ArrayList<>();
         postRef.addValueEventListener(new ValueEventListener() {
             @Override

@@ -1,5 +1,6 @@
 package com.markzhengma.android.lifommunity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -67,8 +68,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         locationSpinner.setAdapter(adapter);
 
 
-
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +80,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 map.put("location", locationSpinner.getSelectedItem().toString());
                 map.put("intro", introEditText.getText().toString());
                 userRef.child("users").child(user.getUid().toString()).updateChildren(map);
-                final Intent intent = new Intent(SettingsActivity.this, ProfileActivity.class);
+                final Intent intent = new Intent(SettingsActivity.this, TabActivity.class);
                 startActivity(intent);
             }
         });
