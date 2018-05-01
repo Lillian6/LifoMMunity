@@ -46,9 +46,14 @@ import com.google.firebase.storage.UploadTask;
 import java.io.FileNotFoundException;
 
 import java.net.URI;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 public class PostActivity extends Fragment {
@@ -155,32 +160,42 @@ public class PostActivity extends Fragment {
                 final FirebaseUser user = mAuth.getCurrentUser();
                 final Date currentTime = Calendar.getInstance().getTime();
                 if(user != null) {
-
-                    progressDialog.setMessage("Uploading...");
-                    progressDialog.show();
-                    getPostData();
-                    StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
-                    filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Uri downloadUri = taskSnapshot.getDownloadUrl();
-                            postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), username, downloadUri.toString(), currentTime.toString(), titleText, contentText));
-                            Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
+                    try {
+                        final SimpleDateFormat dateString = new SimpleDateFormat("MMM d, yyyy HH:mm:ss");
+                        System.out.println(dateString.format(currentTime));
+                        progressDialog.setMessage("Uploading...");
+                        progressDialog.show();
+                        getPostData();
+                        if(uri != null) {
+                            StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
+                            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                                    postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), username, downloadUri.toString(), dateString.format(currentTime), titleText, contentText));
+                                    Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+                            });
+                        }else{
+                            postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), username, null, dateString.format(currentTime), titleText, contentText));
                         }
-                    });
 
-                    //                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
-                    //                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    //                    @Override
-                    //                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    //                        Uri downloadUri = taskSnapshot.getDownloadUrl();
-                    //                        Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
-                    //                    }
-                    //                });
-                    Intent intent = new Intent(getActivity(), TabActivity.class);
-                    startActivity(intent);
-                    Log.v(username, currentTime.toString());
+                        //                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
+                        //                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        //                    @Override
+                        //                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        //                        Uri downloadUri = taskSnapshot.getDownloadUrl();
+                        //                        Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
+                        //                    }
+                        //                });
+                        Intent intent = new Intent(getActivity(), TabActivity.class);
+                        startActivity(intent);
+                        Log.v(username, currentTime.toString());
+                    }
+                    catch (Exception e) {
+                        System.out.println(e.toString() + ".");
+                    }
                 }else{
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
