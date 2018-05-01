@@ -27,6 +27,11 @@ public class PostData implements Serializable {
     public PostData() {
     }
 
+    public PostData(String titleText, String contentText) {
+        this.titleText = titleText;
+        this.contentText = contentText;
+    }
+
     public String getUserId() {
         return userId;
     }
@@ -73,5 +78,9 @@ public class PostData implements Serializable {
 
     public void setContentText(String contentText) {
         this.contentText = contentText;
+    }
+
+    public String toString() {
+        return "Title: " + titleText + "\nContent: " + contentText;
     }
 }

@@ -6,6 +6,8 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +44,13 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                Toast.makeText(context, postTitleView.getText(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(v.getContext(), FullPostActivity.class);
+               Intent intent = new Intent(v.getContext(), FullPostActivity.class);
+
+                String title = postTitleView.getText().toString();
+                String content = postContentView.getText().toString();
+
+                PostData currentPost = new PostData(title,content);
+                intent.putExtra(Keys.POST_KEY,currentPost);
                 context.startActivity(intent);
             }
         });
