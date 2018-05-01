@@ -27,6 +27,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 public class FullPostActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
@@ -34,6 +36,7 @@ public class FullPostActivity extends AppCompatActivity {
     private TextView posterDisplay;
     private TextView titleDisplay;
     private TextView contentDisplay;
+    private TextView timeDisplay;
     private ImageView imageView;
     private float textSize = 25;
     StorageReference mStorage;
@@ -48,6 +51,7 @@ public class FullPostActivity extends AppCompatActivity {
         posterDisplay = (TextView)findViewById(R.id.full_post_poster);
         titleDisplay = (TextView)findViewById(R.id.full_post_title);
         contentDisplay = (TextView)findViewById(R.id.full_post_content);
+        timeDisplay = findViewById(R.id.full_post_time);
         imageView = findViewById(R.id.post_image_view);
 
         database = FirebaseDatabase.getInstance();
@@ -89,7 +93,7 @@ public class FullPostActivity extends AppCompatActivity {
         PostData post = (PostData) intent.getSerializableExtra(Keys.POST_KEY);
         titleDisplay.setText(post.getTitleText());
         contentDisplay.setText(post.getContentText());
-
+        timeDisplay.setText(post.userName + " posted on: " + post.time);
     }
 
 

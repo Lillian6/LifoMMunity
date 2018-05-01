@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,10 +26,12 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     private TextView nameView;
     private TextView postTitleView;
     private TextView postContentView;
+    private TextView postTimeView;
     private Button likeBtn;
     private Button commentBtn;
 
     private Context context;
+    public PostData postObject;
 
     public PostViewHolder(View itemView, final Context context) {
         super(itemView);
@@ -36,7 +39,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         userImageView = (ImageView) itemView.findViewById(R.id.profile_image);
         nameView = (TextView) itemView.findViewById(R.id.profile_name);
         postTitleView = (TextView) itemView.findViewById(R.id.post_title);
-        postContentView = (TextView) itemView.findViewById(R.id.post_content);
+        postTimeView = itemView.findViewById(R.id.post_time);
         likeBtn = (Button) itemView.findViewById(R.id.like_btn);
         commentBtn = (Button) itemView.findViewById(R.id.comment_btn);
 
@@ -45,14 +48,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Toast.makeText(context, postTitleView.getText(), Toast.LENGTH_SHORT).show();
+//               Toast.makeText(context, postTitleView.getText(), Toast.LENGTH_SHORT).show();
                Intent intent = new Intent(v.getContext(), FullPostActivity.class);
 
-                String title = postTitleView.getText().toString();
-                String content = postContentView.getText().toString();
-
-                PostData currentPost = new PostData(title,content);
-                intent.putExtra(Keys.POST_KEY,currentPost);
+                intent.putExtra(Keys.POST_KEY, postObject);
                 context.startActivity(intent);
             }
         });
@@ -74,6 +73,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 //
 //    }
 
+    public void createPostObject(String userId, String userName, String imageId, String time, String titleText, String contentText){
+        postObject = new PostData(userId, userName, imageId, time, titleText, contentText);
+    }
+
     public CardView getCardView() {
         return cardView;
     }
@@ -94,8 +97,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         return nameView;
     }
 
-    public void setNameView(TextView nameView) {
-        this.nameView = nameView;
+    public void setNameView(String name) {
+        nameView.setText(name);
     }
 
     public TextView getPostTitleView() {
@@ -112,6 +115,14 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
     public void setPostContentView(String content) {
         postContentView.setText(content);
+    }
+
+    public TextView getPostTimeView(){
+        return postTimeView;
+    }
+
+    public void setPostTimeView(String time){
+        postTimeView.setText(time);
     }
 
     public Button getLikeBtn() {
