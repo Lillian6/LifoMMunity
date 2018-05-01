@@ -190,7 +190,6 @@ public class PostActivity extends Fragment {
                         progressDialog.dismiss();
                     }
                 });
-
             } catch (FileNotFoundException e) {
                 Toast.makeText(getActivity(), "Error uploading photo", Toast.LENGTH_SHORT).show();
             }
@@ -211,7 +210,6 @@ public class PostActivity extends Fragment {
                         progressDialog.dismiss();
                     }
                 });
-
             } catch (Exception e) {
                 Toast.makeText(getActivity(), "Error uploading photo", Toast.LENGTH_SHORT).show();
             }
