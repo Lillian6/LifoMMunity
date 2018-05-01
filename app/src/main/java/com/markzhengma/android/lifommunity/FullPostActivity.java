@@ -52,7 +52,7 @@ public class FullPostActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("post");
-        mStorage = FirebaseStorage.getInstance().getReference();
+//        mStorage = FirebaseStorage.getInstance().getReference();
 
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -85,15 +85,13 @@ public class FullPostActivity extends AppCompatActivity {
 //            }
 //        });
 
-
-
-
         Intent intent = getIntent();
         PostData post = (PostData) intent.getSerializableExtra(Keys.POST_KEY);
         titleDisplay.setText(post.getTitleText());
         contentDisplay.setText(post.getContentText());
 
     }
+
 
     //inflates the xml file
     @Override
