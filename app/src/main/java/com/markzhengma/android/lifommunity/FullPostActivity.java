@@ -34,8 +34,11 @@ public class FullPostActivity extends AppCompatActivity {
     private TextView posterDisplay;
     private TextView titleDisplay;
     private TextView contentDisplay;
+    private ImageView imageView;
     private float textSize = 25;
-=======
+    StorageReference mStorage;
+    private PostData postData;
+
    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +48,28 @@ public class FullPostActivity extends AppCompatActivity {
         posterDisplay = (TextView)findViewById(R.id.full_post_poster);
         titleDisplay = (TextView)findViewById(R.id.full_post_title);
         contentDisplay = (TextView)findViewById(R.id.full_post_content);
+        imageView = findViewById(R.id.post_image_view);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("post");
         mStorage = FirebaseStorage.getInstance().getReference();
 
-//        Picasso.get()
-//                    .load("https://firebasestorage.googleapis.com/v0/b/lifommunity-d553e.appspot.com/o/Post%20Image%2Fimage%3A50%2FPost%20Image%2Fimage%3A50?alt=media&token=7d20acb9-201d-4c0b-8bf7-f56f2b6a6799")
-//                        .into(postImageView);
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Picasso.get()
+                        .load(dataSnapshot.getValue(PostData.class).imageId)
+                        .into(imageView);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
 //        mStorage.child("Post Image").child(uri.getLastPathSegment()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 //            @Override
@@ -68,7 +85,7 @@ public class FullPostActivity extends AppCompatActivity {
 //            }
 //        });
 
-   }
+
 
 
         Intent intent = getIntent();

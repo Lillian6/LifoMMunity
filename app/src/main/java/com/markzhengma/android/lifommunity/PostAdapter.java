@@ -62,10 +62,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
 //            @Override
 //            public void onCancelled(DatabaseError databaseError) {
 //
-//            }
-            PostData post = posts.get(position);
-            holder.getPostContentView().setText(post.contentText);
-            holder.getPostTitleView().setText(post.titleText);
+//
+        PostData post = posts.get(position);
+        holder.getPostContentView().setText(post.contentText);
+        holder.getPostTitleView().setText(post.titleText);
+    }
 
 
     @Override
