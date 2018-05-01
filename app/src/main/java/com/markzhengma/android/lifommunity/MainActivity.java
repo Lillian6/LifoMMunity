@@ -42,43 +42,64 @@ public class MainActivity extends Fragment {
     ArrayList<PostData> posts;
     PostAdapter adapter;
     RecyclerView recyclerView;
+    ImageView imageView;
+
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference postRef = database.getReference("post");
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-////        initialData();
-//    }
-//
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        posts = new ArrayList<>();
-//
-//
-//        postRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot child : dataSnapshot.getChildren()){
-//                    posts.add(new PostData(
-//                            child.child("userId").getValue().toString(),
-//                            child.child("userName").getValue().toString(),
-//                            child.child("imageId").getValue().toString(),
-//                            child.child("time").getValue().toString(),
-//                            child.child("titleText").getValue().toString(),
-//                            child.child("contentText").getValue().toString()
-//                    ));
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        posts = new ArrayList<>();
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    posts.add(new PostData(
+                            child.child("userId").getValue().toString(),
+                            child.child("userName").getValue().toString(),
+                            child.child("imageId").getValue().toString(),
+                            child.child("time").getValue().toString(),
+                            child.child("titleText").getValue().toString(),
+                            child.child("contentText").getValue().toString()
+                    ));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        posts = new ArrayList<>();
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    posts.add(new PostData(
+                            child.child("userId").getValue().toString(),
+                            child.child("userName").getValue().toString(),
+                            child.child("imageId").getValue().toString(),
+                            child.child("time").getValue().toString(),
+                            child.child("titleText").getValue().toString(),
+                            child.child("contentText").getValue().toString()
+                    ));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,10 +109,10 @@ public class MainActivity extends Fragment {
 //        initialData();
 //        postIndex = 0;
 
-        fullPostBtn = rootView.findViewById(R.id.full_post_btn);
+//        fullPostBtn = rootView.findViewById(R.id.full_post_btn);
 //        postlistLayout = rootView.findViewById(R.id.postlist_layout);
 
-        setFullPostBtnListener();
+//        setFullPostBtnListener();
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -102,6 +123,19 @@ public class MainActivity extends Fragment {
         return rootView;
     }
 
+//    public void setFullPostBtnListener(){
+//        fullPostBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openFullPost(view);
+//            }
+//        });
+//    }
+    public void openFullPost(View view) {
+        Intent intent = new Intent(getActivity(), FullPostActivity.class);//changed "this" to "getActivity()" in order to be compatible with Fragment
+        startActivity(intent);
+    }
+}
 
 //        postRef.addValueEventListener(new ValueEventListener() {
 //            @Override
@@ -146,15 +180,6 @@ public class MainActivity extends Fragment {
 //
 //    }
 
-
-    public void setFullPostBtnListener(){
-        fullPostBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFullPost(view);
-            }
-        });
-    }
 
 //    private void initialData() {
 //        posts = new ArrayList<>();
@@ -239,8 +264,4 @@ public class MainActivity extends Fragment {
 //        }
 //    }
 
-    public void openFullPost(View view) {
-        Intent intent = new Intent(getActivity(), FullPostActivity.class);//changed "this" to "getActivity()" in order to be compatible with Fragment
-        startActivity(intent);
-    }
-}
+

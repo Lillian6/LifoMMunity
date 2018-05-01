@@ -1,5 +1,6 @@
 package com.markzhengma.android.lifommunity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -65,8 +66,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 R.array.locations_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(adapter);
-
-
 
 
         saveButton.setOnClickListener(new View.OnClickListener() {
