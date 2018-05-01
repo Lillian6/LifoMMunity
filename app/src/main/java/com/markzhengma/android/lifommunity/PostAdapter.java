@@ -10,6 +10,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,9 @@ import java.util.List;
 public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     private List<PostData> posts;
     private Context context;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference postRef = database.getReference("post");
+
 
     public PostAdapter(List<PostData> posts, Context context) {
         this.posts = posts;
@@ -71,12 +75,33 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
     @Override
     public void onBindViewHolder(PostViewHolder holder, int position) {
-        PostData post = posts.get(position);
 //        holder.bind(post);
+
+//        posts = new ArrayList<>();
+//        postRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for(DataSnapshot child : dataSnapshot.getChildren()){
+//                    posts.add(new PostData(
+//                            child.child("userId").getValue().toString(),
+//                            child.child("userName").getValue().toString(),
+//                            child.child("imageId").getValue().toString(),
+//                            child.child("time").getValue().toString(),
+//                            child.child("titleText").getValue().toString(),
+//                            child.child("contentText").getValue().toString()
+//                    ));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//
+        PostData post = posts.get(position);
         holder.getPostContentView().setText(post.contentText);
         holder.getPostTitleView().setText(post.titleText);
-
     }
+
 
     @Override
     public int getItemCount() {

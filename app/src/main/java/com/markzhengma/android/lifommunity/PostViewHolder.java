@@ -6,6 +6,8 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +27,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     private TextView postContentView;
     private Button likeBtn;
     private Button commentBtn;
-    private ImageView postImageView;
 
     private Context context;
 
@@ -33,7 +34,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         cardView = (CardView) itemView.findViewById(R.id.card_view);
         userImageView = (ImageView) itemView.findViewById(R.id.profile_image);
-        postImageView = (ImageView) itemView.findViewById(R.id.main_image_view);
         nameView = (TextView) itemView.findViewById(R.id.profile_name);
         postTitleView = (TextView) itemView.findViewById(R.id.post_title);
         postContentView = (TextView) itemView.findViewById(R.id.post_content);
@@ -46,7 +46,13 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                Toast.makeText(context, postTitleView.getText(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(v.getContext(), FullPostActivity.class);
+               Intent intent = new Intent(v.getContext(), FullPostActivity.class);
+
+                String title = postTitleView.getText().toString();
+                String content = postContentView.getText().toString();
+
+                PostData currentPost = new PostData(title,content);
+                intent.putExtra(Keys.POST_KEY,currentPost);
                 context.startActivity(intent);
             }
         });
@@ -124,8 +130,5 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         this.commentBtn = commentBtn;
     }
 
-    public void setPostImage(String imageId) {
-        Picasso.get().load(imageId).into(postImageView);
-    }
 }
 
