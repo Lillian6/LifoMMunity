@@ -171,7 +171,9 @@ public class PostActivity extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        uri = data.getData();//Uri can store the value and path of the image and we can get the path from data
+        if(data != null) {
+            uri = data.getData();//Uri can store the value and path of the image and we can get the path from data
+        }
         if (resultCode != Activity.RESULT_OK) return;
 
         if (requestCode == RC_PHOTO_PICKER) {
