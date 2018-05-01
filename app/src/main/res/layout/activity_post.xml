@@ -60,16 +60,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@color/colorGreen"
                 android:text="@string/add_image"/>
-            <Button
-                android:id="@+id/camera_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/postText"
-                android:drawableStart="@drawable/cam_drawable"
-                android:paddingHorizontal="32dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorGreen"
-                android:text="@string/camera"/>
+
             <Button
                 android:id="@+id/submit_post_btn"
                 android:layout_width="wrap_content"
