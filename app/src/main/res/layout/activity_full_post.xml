@@ -83,11 +83,19 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/button_gradient2"
+                    android:textStyle="bold"
+                    android:textColor="@color/postText"
                     android:text="@string/like" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/button_gradient2"
+                    android:textStyle="bold"
+                    android:textColor="@color/postText"
                     android:text="@string/comment" />
 
 
