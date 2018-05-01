@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -48,30 +49,6 @@ public class FullPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_post);
 
-        posterDisplay = (TextView)findViewById(R.id.full_post_poster);
-        titleDisplay = (TextView)findViewById(R.id.full_post_title);
-        contentDisplay = (TextView)findViewById(R.id.full_post_content);
-        timeDisplay = findViewById(R.id.full_post_time);
-        imageView = findViewById(R.id.post_image_view);
-
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("post");
-//        mStorage = FirebaseStorage.getInstance().getReference();
-
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Picasso.get()
-                        .load(dataSnapshot.getValue(PostData.class).imageId)
-                        .into(imageView);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
 
 
@@ -89,14 +66,59 @@ public class FullPostActivity extends AppCompatActivity {
 //            }
 //        });
 
+//        Intent intent = getIntent();
+//        PostData post = (PostData) intent.getSerializableExtra(Keys.POST_KEY);
+//        titleDisplay.setText(post.getTitleText());
+//        contentDisplay.setText(post.getContentText());
+//        timeDisplay.setText(post.userName + " posted on: " + post.time);
+//        //Toast.makeText(FullPostActivity.this, post.imageId, Toast.LENGTH_LONG).show();
+////        Picasso.get()
+////                        .load(post.imageId)
+////                        .into(imageView);
+//        Glide.with(getApplicationContext()).load(post.imageId).into(imageView);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setContentView(R.layout.activity_full_post);
+
+        posterDisplay = (TextView)findViewById(R.id.full_post_poster);
+        titleDisplay = (TextView)findViewById(R.id.full_post_title);
+        contentDisplay = (TextView)findViewById(R.id.full_post_content);
+        timeDisplay = findViewById(R.id.full_post_time);
+        imageView = findViewById(R.id.post_image_view);
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("post");
+//        mStorage = FirebaseStorage.getInstance().getReference();
+
+
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Picasso.get()
+//                        .load(dataSnapshot.getValue(PostData.class).imageId)
+//                        .into(imageView);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+
         Intent intent = getIntent();
         PostData post = (PostData) intent.getSerializableExtra(Keys.POST_KEY);
         posterDisplay.setText(post.userName);
         titleDisplay.setText(post.getTitleText());
         contentDisplay.setText(post.getContentText());
-        timeDisplay.setText(" posted on: " + post.time);
-    }
 
+        timeDisplay.setText(" posted on: " + post.time);
+        Glide.with(getApplicationContext()).load(post.imageId).into(imageView);
+
+    }
 
     //inflates the xml file
     @Override
