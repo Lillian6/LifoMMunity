@@ -156,7 +156,6 @@ public class PostActivity extends Fragment {
                 if(user != null) {
                     Date currentTime = Calendar.getInstance().getTime();
                     getPostData();
-                    postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), username, mStorage.getDownloadUrl().toString(), currentTime.toString(), titleText, contentText));
 
                     //                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
                     //                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -203,6 +202,7 @@ public class PostActivity extends Fragment {
 
         if (requestCode == RC_PHOTO_PICKER) {
             try {
+                final Date currentTime = Calendar.getInstance().getTime();
                 progressDialog.setMessage("Uploading...");
                 progressDialog.show();
                 decodeUri(uri);
@@ -213,6 +213,7 @@ public class PostActivity extends Fragment {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Uri downloadUri = taskSnapshot.getDownloadUrl();
+                        postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), username, downloadUri.toString(), currentTime.toString(), titleText, contentText));
                         Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }

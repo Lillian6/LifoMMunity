@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -94,6 +95,12 @@ public class FullPostActivity extends AppCompatActivity {
         titleDisplay.setText(post.getTitleText());
         contentDisplay.setText(post.getContentText());
         timeDisplay.setText(post.userName + " posted on: " + post.time);
+        //Toast.makeText(FullPostActivity.this, post.imageId, Toast.LENGTH_LONG).show();
+//        Picasso.get()
+//                        .load(post.imageId)
+//                        .into(imageView);
+        Glide.with(getApplicationContext()).load(post.imageId).into(imageView);
+
     }
 
 

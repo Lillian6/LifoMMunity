@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
     private CardView cardView;
-    private ImageView userImageView;
+    private ImageView imageView;
     private TextView nameView;
     private TextView postTitleView;
     private TextView postContentView;
@@ -36,7 +36,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     public PostViewHolder(View itemView, final Context context) {
         super(itemView);
         cardView = (CardView) itemView.findViewById(R.id.card_view);
-        userImageView = (ImageView) itemView.findViewById(R.id.profile_image);
+        imageView = (ImageView) itemView.findViewById(R.id.profile_image);
         nameView = (TextView) itemView.findViewById(R.id.profile_name);
         postTitleView = (TextView) itemView.findViewById(R.id.post_title);
         postTimeView = itemView.findViewById(R.id.post_time);
@@ -85,12 +85,12 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         this.cardView = cardView;
     }
 
-    public ImageView getImageView() {
-        return userImageView;
-    }
+    //public ImageView getImageView() {
+        //return userImageView;
+    //}
 
-    public void setImageView(ImageView imageView) {
-        this.userImageView = imageView;
+    public void setImageView(String imageId) {
+        Picasso.get().load(imageId).into(imageView);
     }
 
     public TextView getNameView() {
