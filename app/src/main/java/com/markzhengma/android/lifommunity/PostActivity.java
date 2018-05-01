@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -136,18 +137,26 @@ public class PostActivity extends Fragment {
             @Override
             public void onClick(View view){
                 FirebaseUser user = mAuth.getCurrentUser();
-                Date currentTime = Calendar.getInstance().getTime();
-                getPostData();
-                Log.v(currentTime.toString(), "%%%%%%%%%%%%");
-                postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), user.getDisplayName(), uri.toString(), currentTime.toString(), titleText, contentText));
-//                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
-//                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        Uri downloadUri = taskSnapshot.getDownloadUrl();
-//                        Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+                if(user != null) {
+                    Date currentTime = Calendar.getInstance().getTime();
+                    getPostData();
+                    Log.v(currentTime.toString(), "%%%%%%%%%%%%");
+                    postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), user.getDisplayName(), mStorage.getDownloadUrl().toString(), currentTime.toString(), titleText, contentText));
+
+                    //                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
+                    //                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    //                    @Override
+                    //                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    //                        Uri downloadUri = taskSnapshot.getDownloadUrl();
+                    //                        Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
+                    //                    }
+                    //                });
+                    Intent intent = new Intent(getActivity(), TabActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
