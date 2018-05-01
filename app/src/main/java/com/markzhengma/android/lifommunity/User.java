@@ -1,5 +1,8 @@
 package com.markzhengma.android.lifommunity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by pengbuding on 20/03/2018.
  */
@@ -18,6 +21,15 @@ public class User {
 
     public User(){}
 
+    public User(String uid, String username, String gender, int age, String location, String intro){
+        this.uid = uid;
+        this.username = username;
+        this.gender = gender;
+        this.age = age;
+        this.location = location;
+        this.intro = intro;
+    }
+
     public User(String uid, String username, String email, String gender, int age, String location, String intro, int numOfFollow){
         this.uid = uid;
         this.username = username;
@@ -28,6 +40,8 @@ public class User {
         this.intro =intro;
         this.numOfFollow=numOfFollow;
     }
+
+
 
     public String getUid() {
         return uid;

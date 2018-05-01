@@ -1,7 +1,9 @@
 package com.markzhengma.android.lifommunity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -9,30 +11,65 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class FullPostActivity extends AppCompatActivity {
+
     FirebaseDatabase database;
     DatabaseReference myRef;
     private TextView posterDisplay;
     private TextView titleDisplay;
     private TextView contentDisplay;
     private float textSize = 25;
-
+=======
+   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_post);
+
         posterDisplay = (TextView)findViewById(R.id.full_post_poster);
         titleDisplay = (TextView)findViewById(R.id.full_post_title);
         contentDisplay = (TextView)findViewById(R.id.full_post_content);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("post");
+        mStorage = FirebaseStorage.getInstance().getReference();
+
+//        Picasso.get()
+//                    .load("https://firebasestorage.googleapis.com/v0/b/lifommunity-d553e.appspot.com/o/Post%20Image%2Fimage%3A50%2FPost%20Image%2Fimage%3A50?alt=media&token=7d20acb9-201d-4c0b-8bf7-f56f2b6a6799")
+//                        .into(postImageView);
+
+//        mStorage.child("Post Image").child(uri.getLastPathSegment()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//            @Override
+//            public void onSuccess(Uri uri) {
+//                Picasso.get()
+//                        .load("https://firebasestorage.googleapis.com/v0/b/lifommunity-d553e.appspot.com/o/Post%20Image%2Fimage%3A50%2FPost%20Image%2Fimage%3A50?alt=media&token=7d20acb9-201d-4c0b-8bf7-f56f2b6a6799")
+//                        .into(postImageView);
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(FullPostActivity.this, "display failed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+   }
+
 
         Intent intent = getIntent();
         PostData post = (PostData) intent.getSerializableExtra(Keys.POST_KEY);

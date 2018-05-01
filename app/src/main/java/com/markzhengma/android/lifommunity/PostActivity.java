@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -36,11 +37,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 
+import java.net.URI;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class PostActivity extends Fragment {
     private Button submitPostBtn;
@@ -48,9 +53,12 @@ public class PostActivity extends Fragment {
     private Button cameraBtn;
     private EditText titleTextView;
     private EditText contentTextView;
+    private Uri uri = null;
 
     private String titleText;
     private String contentText;
+    private PostData post;
+    private ImageView imageView;
 
     private FirebaseDatabase database;
     private DatabaseReference postRef;
@@ -58,11 +66,11 @@ public class PostActivity extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
+    private ProgressDialog progressDialog;
 
     private static final int RC_PHOTO_PICKER = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
-    private ImageView imageView;
-//    private StorageReference mStorage;
+    private StorageReference mStorage;
 //    private ProgressDialog mProgress;
 
     @Override
@@ -75,8 +83,11 @@ public class PostActivity extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         postRef = database.getReference("post");
-        picRef = database.getReference("picture");
+        picRef = database.getReference("pic");
         user = mAuth.getCurrentUser();
+        mStorage = FirebaseStorage.getInstance().getReference();
+        progressDialog = new ProgressDialog(getActivity());
+
 
         titleTextView = rootView.findViewById(R.id.post_title_edit_text);
         contentTextView = rootView.findViewById(R.id.post_content_edit_text);
@@ -116,6 +127,7 @@ public class PostActivity extends Fragment {
     private void getPostData(){
         titleText = titleTextView.getText().toString();
         contentText = contentTextView.getText().toString();
+
     }
 
     private void setSubmitPostListener(){
@@ -127,7 +139,15 @@ public class PostActivity extends Fragment {
                 Date currentTime = Calendar.getInstance().getTime();
                 getPostData();
                 Log.v(currentTime.toString(), "%%%%%%%%%%%%");
-                postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), user.getDisplayName(), picRef.toString(), currentTime.toString(), titleText, contentText));
+                postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), user.getDisplayName(), uri.toString(), currentTime.toString(), titleText, contentText));
+//                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
+//                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        Uri downloadUri = taskSnapshot.getDownloadUrl();
+//                        Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
             }
         });
     }
@@ -138,7 +158,6 @@ public class PostActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 selectImage();
-
             }
         });
     }
@@ -152,23 +171,50 @@ public class PostActivity extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        uri = data.getData();//Uri can store the value and path of the image and we can get the path from data
         if (resultCode != Activity.RESULT_OK) return;
 
         if (requestCode == RC_PHOTO_PICKER) {
-            Uri photoUri = data.getData();
             try {
-                decodeUri(photoUri);
-                picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
+                progressDialog.setMessage("Uploading...");
+                progressDialog.show();
+                decodeUri(uri);
+                picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
+                Toast.makeText(getActivity(), "Upload successfully", Toast.LENGTH_SHORT).show();
+                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
+                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Uri downloadUri = taskSnapshot.getDownloadUrl();
+                        Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                });
             } catch (FileNotFoundException e) {
-                Toast.makeText(getActivity(), "Error decoding photo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Error uploading photo", Toast.LENGTH_SHORT).show();
+            }
+        }else if(requestCode == REQUEST_IMAGE_CAPTURE){
+            try {
+                progressDialog.setMessage("Uploading...");
+                progressDialog.show();
+                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(thumbnail);
+                picRef.push().setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap())); // Save image to Firebase
+                Toast.makeText(getActivity(), "Upload successfully", Toast.LENGTH_SHORT).show();
+                mStorage = mStorage.child("Post Image").child(uri.getLastPathSegment());
+                mStorage.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Uri downloadUri = taskSnapshot.getDownloadUrl();
+                        Toast.makeText(getActivity(), "Storage complete", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                });
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Error uploading photo", Toast.LENGTH_SHORT).show();
             }
         }
 
-        if (requestCode == REQUEST_IMAGE_CAPTURE){
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(photo);
-            picRef.setValue(ImageUtil.bitmapToByteString(((BitmapDrawable) imageView.getDrawable()).getBitmap()));
-        }
 //            mProgress.setMessage("uploading image...");
 //            mProgress.show();
 //            Uri cameraUri = data.getData();
@@ -230,5 +276,4 @@ public class PostActivity extends Fragment {
             }
         });
     }
-
 }

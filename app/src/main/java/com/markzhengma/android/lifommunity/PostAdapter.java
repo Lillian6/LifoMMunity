@@ -42,6 +42,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     @Override
     public void onBindViewHolder(PostViewHolder holder, int position) {
 //        holder.bind(post);
+
 //        posts = new ArrayList<>();
 //        postRef.addValueEventListener(new ValueEventListener() {
 //            @Override
@@ -65,7 +66,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
             PostData post = posts.get(position);
             holder.getPostContentView().setText(post.contentText);
             holder.getPostTitleView().setText(post.titleText);
-    }
+
 
     @Override
     public int getItemCount() {
