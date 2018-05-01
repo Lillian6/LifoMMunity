@@ -99,6 +99,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
 //            }
         PostData post = posts.get(position);
+        holder.setNameView(post.userName);
         holder.setPostTitleView(post.titleText);
         holder.setPostTimeView(post.time );
         holder.setNameView(post.userName);

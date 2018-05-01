@@ -111,9 +111,11 @@ public class FullPostActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         PostData post = (PostData) intent.getSerializableExtra(Keys.POST_KEY);
+        posterDisplay.setText(post.userName);
         titleDisplay.setText(post.getTitleText());
         contentDisplay.setText(post.getContentText());
-        timeDisplay.setText(post.userName + " posted on: " + post.time);
+
+        timeDisplay.setText(" posted on: " + post.time);
         Glide.with(getApplicationContext()).load(post.imageId).into(imageView);
 
     }
