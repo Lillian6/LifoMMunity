@@ -139,7 +139,7 @@ public class PostActivity extends Fragment {
                 Date currentTime = Calendar.getInstance().getTime();
                 getPostData();
                 Log.v(currentTime.toString(), "%%%%%%%%%%%%");
-                postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), user.getDisplayName(), picRef.push().toString(), currentTime.toString(), titleText, contentText));
+                postRef.child(currentTime.toString()).setValue(new PostData(user.getUid().toString(), user.getDisplayName(), uri.toString(), currentTime.toString(), titleText, contentText));
 //                StorageReference filePath = mStorage.child("Post Image").child(uri.getLastPathSegment());
 //                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 //                    @Override

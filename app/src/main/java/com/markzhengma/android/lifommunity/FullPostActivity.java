@@ -47,11 +47,11 @@ public class FullPostActivity extends AppCompatActivity {
         myRef = database.getReference("post");
         mStorage = FirebaseStorage.getInstance().getReference();
 
-        Picasso.get()
-                    .load("https://firebasestorage.googleapis.com/v0/b/lifommunity-d553e.appspot.com/o/Post%20Image%2Fimage%3A50%2FPost%20Image%2Fimage%3A50?alt=media&token=7d20acb9-201d-4c0b-8bf7-f56f2b6a6799")
-                        .into(postImageView);
+//        Picasso.get()
+//                    .load("https://firebasestorage.googleapis.com/v0/b/lifommunity-d553e.appspot.com/o/Post%20Image%2Fimage%3A50%2FPost%20Image%2Fimage%3A50?alt=media&token=7d20acb9-201d-4c0b-8bf7-f56f2b6a6799")
+//                        .into(postImageView);
 
-//        mStorage.child("image:50").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//        mStorage.child("Post Image").child(uri.getLastPathSegment()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 //            @Override
 //            public void onSuccess(Uri uri) {
 //                Picasso.get()
