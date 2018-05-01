@@ -97,8 +97,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/postText"
                     android:text="@string/comment" />
-
-
+                
             </LinearLayout>
 
         </LinearLayout>
