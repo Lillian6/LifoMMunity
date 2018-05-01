@@ -38,7 +38,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 PostData theData = dataSnapshot.getValue(PostData.class);
-                posts.add(theData);
+                posts.add(0, theData);
                 notifyDataSetChanged();
             }
 
