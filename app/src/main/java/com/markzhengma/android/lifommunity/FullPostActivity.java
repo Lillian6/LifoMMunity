@@ -28,21 +28,24 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 public class FullPostActivity extends AppCompatActivity {
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
-    private StorageReference mStorage;
-    private ProgressDialog progressDialog;
-    private TextView textDisplay;
-    private float textSize = 20;
-    private ImageView postImageView;
-    private Uri uri;
 
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    private TextView posterDisplay;
+    private TextView titleDisplay;
+    private TextView contentDisplay;
+    private float textSize = 25;
+=======
+   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_post);
-        textDisplay = (TextView)findViewById(R.id.full_post_content);
-        postImageView = findViewById(R.id.post_image_view);
+
+        posterDisplay = (TextView)findViewById(R.id.full_post_poster);
+        titleDisplay = (TextView)findViewById(R.id.full_post_title);
+        contentDisplay = (TextView)findViewById(R.id.full_post_content);
+
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("post");
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -67,6 +70,13 @@ public class FullPostActivity extends AppCompatActivity {
 
    }
 
+
+        Intent intent = getIntent();
+        PostData post = (PostData) intent.getSerializableExtra(Keys.POST_KEY);
+        titleDisplay.setText(post.getTitleText());
+        contentDisplay.setText(post.getContentText());
+
+    }
 
     //inflates the xml file
     @Override
@@ -102,7 +112,7 @@ public class FullPostActivity extends AppCompatActivity {
                 return true;
             case R.id.Text_Size_Bigger:
                 textSize ++;
-                textDisplay.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+                contentDisplay.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
             default:
                 return super.onOptionsItemSelected(item);
         }
