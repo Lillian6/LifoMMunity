@@ -38,7 +38,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 PostData theData = dataSnapshot.getValue(PostData.class);
-                posts.add(theData);
+                posts.add(0, theData);
                 notifyDataSetChanged();
             }
 
@@ -96,12 +96,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
 //            @Override
 //            public void onCancelled(DatabaseError databaseError) {
 //
-//
+
+//            }
         PostData post = posts.get(position);
         holder.getPostContentView().setText(post.contentText);
         holder.getPostTitleView().setText(post.titleText);
     }
-
 
     @Override
     public int getItemCount() {
@@ -112,15 +112,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
             } else {
                 arr = posts.size();
             }
-
         } catch (Exception e) {
 
         }
-
-        return arr;
-    }
-
-
+            return arr;
+        }
 }
-
-
