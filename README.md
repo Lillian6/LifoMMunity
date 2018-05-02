@@ -2,7 +2,8 @@
 Share your stories or thoughts on healthy living! Build a community of people pursuing healthy lifestyles! This is the goal of our app.
 
 ## Life + Community
-![screenshot](./app/Images/scene1.png)
+![screenshot](./app/Images/scene1.png)<br />
+
 This is a platform where you could make posts about healthy lifestyles. Eventually, users could follow other users, like posts and comment on posts.
 ## Technology
 * Java
